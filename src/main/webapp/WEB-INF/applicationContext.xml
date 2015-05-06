@@ -14,7 +14,7 @@
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
  		<property name="location">
-			<value>file:E:/talentvouch-1.0.0/codebase/talentvouch/properties/talentvouch.properties</value>
+			<value>file:C:\Users\DELL\Documents\NetBeansProjects\talentvouch-1.0.0\properties\TALENTVOUCH.properties</value>
 		</property>
     </bean>
 
