@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<Properties>
-		<Property name="log-path">C:\Users\DELL\ Documents\NetBeansProjects\talentvouch-1.0.0\logs</Property>
+		<Property name="log-path">E:\talentvouch-1.0.0\codebase\talentvouch\logs</Property>
 	</Properties>
 	<Appenders>		 
 		<RollingFile name="talentvouchRollingFile" append="true"

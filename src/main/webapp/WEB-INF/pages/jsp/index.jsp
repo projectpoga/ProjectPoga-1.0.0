@@ -1,7 +1,8 @@
 <!doctype html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 	<head>
-		
+		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 		<!-- title -->
 		<title>Refers | Refer Jobs Earn Rewards - Apply jobs | Job Referal Portal</title>
 
@@ -18,26 +19,25 @@
 		<!-- Favicon -->
 
 		<!-- Bootstrap.min.css -->
-		<link href="includes/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-
+		<link href="<c:url value="/resources/includes/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
 		<!-- Slick CSS -->
-		<link rel="stylesheet" type="text/css" href="includes/css/slick.css"/>
-        <link rel="stylesheet" type="text/css" href="includes/css/slick-theme.css"/>
+		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/includes/css/slick.css"/>"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/includes/css/slick-theme.css"/>"/>
 
 		<!-- Font Awesome CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 		<!-- Animate.css -->
-		<link href="includes/css/animate.css" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/includes/css/animate.css"/>" rel="stylesheet" type="text/css">
 
 		<!-- style.css -->
-		<link href="includes/css/style-home.css" rel="stylesheet" type="text/css" >
+		<link href="<c:url value="/resources/includes/css/style-home.css"/>" rel="stylesheet" type="text/css" >
 
 		<!-- jQuery 1.11.2 Plugin -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="includes/js/bootstrap.min.js"></script>
-		<script src="includes/js/html5shiv.min.js" type="text/javascript"></script>
-		<script src="includes/js/respond.min.js" type="text/javascript"></script>
+		<script src="<c:url value="/resources/includes/js/bootstrap.min.js"/>"></script>
+		<script src="<c:url value="/resources/includes/js/html5shiv.min.js"/>" type="text/javascript"></script>
+		<script src="<c:url value="/resources/includes/js/respond.min.js"/>" type="text/javascript"></script>
 	</head>
 	<body>
 
@@ -63,7 +63,7 @@
 									<a href="#">How it Works<span class="hover"></span></a>
 								</li>
 								<li>
-									<a href="jobs.php">Jobs<span class="hover"></span></a>
+									<a href="jobs.htm">Jobs<span class="hover"></span></a>
 								</li>
 								<li>
 									<a href="#">Sign In<span class="hover"></span></a>
@@ -330,11 +330,11 @@
 		</div>
 
 	</body>
-	<script src="includes/js/jquery.animateNumber.min.js"></script>
+	<script src="<c:url value="/resources/includes/js/jquery.animateNumber.min.js"/>"></script>
 	<!--<script language="javascript" src="js/jquery-1.11.2.min.js"></script>-->
 	<!-- Bootstrap.js -->
-	<script src="includes/js/wow.min.js"></script>
-	<script src="includes/js/jquery.counterup.min.js"></script>
+	<script src="<c:url value="/resources/includes/js/wow.min.js"/>"></script>
+	<script src="<c:url value="/resources/includes/js/jquery.counterup.min.js"/>"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-	<script src="includes/js/home-script.js"></script>
+	<script src="<c:url value="/resources/includes/js/home-script.js"/>"></script>
 </html>
