@@ -1,8 +1,9 @@
 <!doctype html>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@include file="/WEB-INF/pages/jspf/envsetup.jspf"%>
 <html lang="en">
 	<head>
-		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 		<!-- title -->
 		<title>Refers | Refer Jobs Earn Rewards - Apply jobs | Job Referal Portal</title>
 
@@ -99,7 +100,7 @@
 					<div class="container" id="welcome-body">
 						<h1 class="text-center intro-title">Welcome to <b>TalentVouch</b><small>.com</small></h1>
 						<p class="text-center">Refer your peers, we vouch you with rewards!</p>
-						<form method="" action="" id="job-search-form">
+						<form method="POST" action="search.htm" id="job-search-form">
 							<div class="input-group" id="job-search-body">
 								<input type="text" class="form-control" placeholder="Search Job..." autofocus>
 								<span class="input-group-btn">

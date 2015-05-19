@@ -1,4 +1,5 @@
 <!doctype html>
+<%@include file="/WEB-INF/pages/jspf/envsetup.jspf"%>
 <html lang="en">
 	<head>
 		
@@ -17,20 +18,20 @@
 		<!-- Favicon -->
 
 		<!-- Bootstrap.min.css -->
-		<link href="includes/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/includes/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
 
 		<!-- Slick CSS -->
-		<link rel="stylesheet" type="text/css" href="includes/css/slick.css"/>
-        <link rel="stylesheet" type="text/css" href="includes/css/slick-theme.css"/>
+		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/includes/css/slick.css"/>"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/includes/css/slick-theme.css"/>"/>
 
 		<!-- Font Awesome CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 		<!-- Animate.css -->
-		<link href="includes/css/animate.css" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/includes/css/animate.css"/>" rel="stylesheet" type="text/css">
 
 		<!-- style.css -->
-		<link href="includes/css/style-purple.css" rel="stylesheet" type="text/css" >
+		<link href="<c:url value="/resources/includes/css/style-purple.css"/>" rel="stylesheet" type="text/css" >
 	</head>
 	<body>
 
@@ -42,31 +43,11 @@
 			<div class="category-body reached-bottom" id="category-body">
 				<div id="ctg-list-body">
 					<ul class="nav nav-pills nav-stacked" id="category-list">
-						<li><a href="#">Application Development <span class="badge">3</span></a></li>
-						<li><a href="#">Automation <span class="badge">3</span></a></li>
-						<li><a href="#">BPO <span class="badge">3</span></a></li>
-						<li><a href="#">Business Development <span class="badge">3</span></a></li>
-						<li><a href="#">Client Servicing <span class="badge">3</span></a></li>
-						<li><a href="#">Computers <span class="badge">3</span></a></li>
-						<li><a href="#">Content /  Journalism <span class="badge">3</span></a></li>
-						<li><a href="#">Copy Writer <span class="badge">3</span></a></li>
-						<li><a href="#">Creative Design <span class="badge">3</span></a></li>
-						<li><a href="#">Engineering Design <span class="badge">3</span></a></li>
-						<li><a href="#">Finance <span class="badge">3</span></a></li>
-						<li><a href="#">HR / Administration / IR <span class="badge">3</span></a></li>
-						<li><a href="#">IT Software - Application Programming <span class="badge">3</span></a></li>
-						<li><a href="#">IT Software - E-Commerce / Internet <span class="badge">3</span></a></li>
-						<li><a href="#">IT Software - Mobile <span class="badge">3</span></a></li>
-						<li><a href="#">Marketing / Advertising <span class="badge">3</span></a></li>
-						<li><a href="#">Product Development <span class="badge">3</span></a></li>
-						<li><a href="#">Product Training <span class="badge">3</span></a></li>
-						<li><a href="#">Program Manager <span class="badge">3</span></a></li>
-						<li><a href="#">Project Manager <span class="badge">3</span></a></li>
-						<li><a href="#">Sales / BD <span class="badge">3</span></a></li>
-						<li><a href="#">Sales Training <span class="badge">3</span></a></li>
-						<li><a href="#">Teaching / Education / Training <span class="badge">3</span></a></li>
-						<li><a href="#">UX / UI <span class="badge">3</span></a></li>
-						<li><a href="#">Web / Graphic Design / Visualiser <span class="badge">3</span></a></li>
+                                            
+                                            
+                                            <c:forEach var="categoryList" items="${categoryModelList}">
+                                                <li><a href="#">${categoryList.categoryName} <span class="badge">${categoryList.jobsCount}</span></a><input type="hidden" name="<c:out value="${fn:trim(categoryList.categoryName)}" />" id="${categoryList.categoryId}" value="${categoryList.categoryId}"/></li>
+					    </c:forEach>	
 					</ul>
 				</div>
 			</div>
@@ -90,13 +71,13 @@
 						<div class="collapse navbar-collapse" id="navbar-home">
 							<ul class="nav navbar-nav navbar-right">
 								<li>
-									<a href="index.php">Home</a>
+									<a href="index.htm">Home</a>
 								</li>
 								<li>
 									<a href="#">How it Works</a>
 								</li>
 								<li class="active">
-									<a href="jobs.php">Jobs</a>
+									<a href="jobs.htm">Jobs</a>
 								</li>
 								<li>
 									<a href="#">Sign In</a>
@@ -157,13 +138,14 @@
 						<div class="panel panel-default panel-body" id="refers-posts-body">
 							<h3 class="post-category-title">Top Jobs <a href="#" class="btn-md">View All</a></h3>
 							<div class="cslick">
+                                                            <c:forEach var="topJobsObj" items="${topJobsList}"> 
 			                    <div>
 			                        <div class="post-single">
 										<div class="panel panel-default panel-body post-single-body">
 											<div class="post-title">
 												<h4 class="text-center">
-													<a href="#">Job Title</a>
-													<div><small>Company Title</small></div>
+													<a href="#">${topJobsObj.jobTitle}</a>
+													<div><small>${topJobsObj.compName}</small></div>
 												</h4>
 											</div>
 											<div class="post-details">
@@ -181,17 +163,17 @@
 															</div>
 														</div>
 													</div>
-													<p class="location">Location: <span>Visakhapatnam</span></p>
+													<p class="location">Location: <span>${topJobsObj.cityName}</span></p>
 												</div>
 												<div class="reward-details text-center">
 													<div class="row">
 														<div class="col-xs-6">
 															<p class="reward-title">Intro Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>2200</span>/-</b></p>
+															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>${topJobsObj.introAmount}</span>/-</b></p>
 														</div>
 														<div class="col-xs-6">
 															<p class="reward-title">Referral Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>22000</span>/-</b></p>
+															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>${topJobsObj.refAmount}</span>/-</b></p>
 														</div>
 													</div>
 												</div>
@@ -199,216 +181,9 @@
 										</div>
 			                    	</div>
 			                    </div>
-			                    <div>
-			                        <div class="post-single">
-										<div class="panel panel-default panel-body post-single-body">
-											<div class="post-title">
-												<h4 class="text-center">
-													<a href="#">Job Title</a>
-													<div><small>Company Title</small></div>
-												</h4>
-											</div>
-											<div class="post-details">
-												<div class="job-details">
-													<div class="row">
-														<div class="col-xs-6">
-															<div class="icon">
-																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
-															</div>
-														</div>
-														<div class="col-xs-6">
-															<div class="post-action">
-																<p><a class="btn btn-primary apply" href="#">Apply</a></p>
-																<p><a href="#" class="btn-refer btn refer">Refer Now!</a></p>
-															</div>
-														</div>
-													</div>
-													<p class="location">Location: <span>Visakhapatnam</span></p>
-												</div>
-												<div class="reward-details text-center">
-													<div class="row">
-														<div class="col-xs-6">
-															<p class="reward-title">Intro Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>2200</span>/-</b></p>
-														</div>
-														<div class="col-xs-6">
-															<p class="reward-title">Referral Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>22000</span>/-</b></p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-			                    	</div>
-			                    </div>
-			                    <div>
-			                        <div class="post-single">
-										<div class="panel panel-default panel-body post-single-body">
-											<div class="post-title">
-												<h4 class="text-center">
-													<a href="#">Job Title</a>
-													<div><small>Company Title</small></div>
-												</h4>
-											</div>
-											<div class="post-details">
-												<div class="job-details">
-													<div class="row">
-														<div class="col-xs-6">
-															<div class="icon">
-																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
-															</div>
-														</div>
-														<div class="col-xs-6">
-															<div class="post-action">
-																<p><a class="btn btn-primary apply" href="#">Apply</a></p>
-																<p><a href="#" class="btn-refer btn refer">Refer Now!</a></p>
-															</div>
-														</div>
-													</div>
-													<p class="location">Location: <span>Visakhapatnam</span></p>
-												</div>
-												<div class="reward-details text-center">
-													<div class="row">
-														<div class="col-xs-6">
-															<p class="reward-title">Intro Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>2200</span>/-</b></p>
-														</div>
-														<div class="col-xs-6">
-															<p class="reward-title">Referral Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>22000</span>/-</b></p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-			                    	</div>
-			                    </div>
-			                    <div>
-			                        <div class="post-single">
-										<div class="panel panel-default panel-body post-single-body">
-											<div class="post-title">
-												<h4 class="text-center">
-													<a href="#">Job Title</a>
-													<div><small>Company Title</small></div>
-												</h4>
-											</div>
-											<div class="post-details">
-												<div class="job-details">
-													<div class="row">
-														<div class="col-xs-6">
-															<div class="icon">
-																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
-															</div>
-														</div>
-														<div class="col-xs-6">
-															<div class="post-action">
-																<p><a class="btn btn-primary apply" href="#">Apply</a></p>
-																<p><a href="#" class="btn-refer btn refer">Refer Now!</a></p>
-															</div>
-														</div>
-													</div>
-													<p class="location">Location: <span>Visakhapatnam</span></p>
-												</div>
-												<div class="reward-details text-center">
-													<div class="row">
-														<div class="col-xs-6">
-															<p class="reward-title">Intro Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>2200</span>/-</b></p>
-														</div>
-														<div class="col-xs-6">
-															<p class="reward-title">Referral Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>22000</span>/-</b></p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-			                    	</div>
-			                    </div>
-			                    <div>
-			                        <div class="post-single">
-										<div class="panel panel-default panel-body post-single-body">
-											<div class="post-title">
-												<h4 class="text-center">
-													<a href="#">Job Title</a>
-													<div><small>Company Title</small></div>
-												</h4>
-											</div>
-											<div class="post-details">
-												<div class="job-details">
-													<div class="row">
-														<div class="col-xs-6">
-															<div class="icon">
-																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
-															</div>
-														</div>
-														<div class="col-xs-6">
-															<div class="post-action">
-																<p><a class="btn btn-primary apply" href="#">Apply</a></p>
-																<p><a href="#" class="btn-refer btn refer">Refer Now!</a></p>
-															</div>
-														</div>
-													</div>
-													<p class="location">Location: <span>Visakhapatnam</span></p>
-												</div>
-												<div class="reward-details text-center">
-													<div class="row">
-														<div class="col-xs-6">
-															<p class="reward-title">Intro Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>2200</span>/-</b></p>
-														</div>
-														<div class="col-xs-6">
-															<p class="reward-title">Referral Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>22000</span>/-</b></p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-			                    	</div>
-			                    </div>
-			                    <div>
-			                        <div class="post-single">
-										<div class="panel panel-default panel-body post-single-body">
-											<div class="post-title">
-												<h4 class="text-center">
-													<a href="#">Job Title</a>
-													<div><small>Company Title</small></div>
-												</h4>
-											</div>
-											<div class="post-details">
-												<div class="job-details">
-													<div class="row">
-														<div class="col-xs-6">
-															<div class="icon">
-																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
-															</div>
-														</div>
-														<div class="col-xs-6">
-															<div class="post-action">
-																<p><a class="btn btn-primary apply" href="#">Apply</a></p>
-																<p><a href="#" class="btn-refer btn refer">Refer Now!</a></p>
-															</div>
-														</div>
-													</div>
-													<p class="location">Location: <span>Visakhapatnam</span></p>
-												</div>
-												<div class="reward-details text-center">
-													<div class="row">
-														<div class="col-xs-6">
-															<p class="reward-title">Intro Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>2200</span>/-</b></p>
-														</div>
-														<div class="col-xs-6">
-															<p class="reward-title">Referral Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>22000</span>/-</b></p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-			                    	</div>
-			                    </div>
+			                    </c:forEach>
+			                  
+			                  
 			                    <!--<div>
 			                        <div class="post-single">
 										<div class="panel panel-default panel-body post-single-body">
@@ -441,6 +216,7 @@
 									</div>
 			                    </div>-->
 			                </div>     
+                                                        <!-- End of Top jobs -->
 						</div>
 
 						<div class="panel panel-default panel-body" id="refers-posts-body">
@@ -1013,8 +789,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<!--<script language="javascript" src="js/jquery-1.11.2.min.js"></script>-->
 	<!-- Bootstrap.js -->
-	<script src="includes/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="includes/js/slick.min.js"></script>
-	<script type="text/javascript" src="includes/js/cscript.js"></script>
-	<script src="includes/js/script.js"></script>
+	<script src="<c:url value="/resources/includes/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/includes/js/slick.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/includes/js/cscript.js"/>"></script>
+	<script src="<c:url value="/resources/includes/js/script.js"/>"></script>
 </html>

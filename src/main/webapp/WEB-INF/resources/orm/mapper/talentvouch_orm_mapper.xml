@@ -17,5 +17,70 @@
 	  <result property="password" column="PASSWORD"/> 
 	  
   </resultMap>
+    
+  <select id="getCategoryDetails" resultMap="categoryResultMap">
+      
+	SELECT category.CATEGORY_ID, category.CATEGORYNAME, COUNT(jobs.CATEGORY_ID) AS jobsCount
+        FROM TV_DATA.CATEGORIES category, TV_DATA.JOBS jobs
+        WHERE category.STATUS = 1 AND
+              category.CATEGORY_ID = jobs.CATEGORY_ID GROUP BY category.CATEGORY_ID
+		
+  </select>
+  
+  <resultMap id="categoryResultMap" type="com.talentvouch.usebeans.CategoryVO">
+	  
+	  <result property="categoryId" column="CATEGORY_ID"/>
+	  <result property="categoryName" column="CATEGORYNAME"/> 
+	  <result property="jobsCount" column="jobsCount"/>
+  </resultMap>
+  
+  
+  <select id="getTopJobs" resultMap="jobDtlsResultMap">
+      
+	SELECT  jobs.JOB_ID, jobs.JOB_TITLE, jobs.REFERAL_AMOUNT, jobs.INTRO_AMOUNT, employerDtls.COMPANY_NAME, location.CITYNAME 
+        FROM TV_DATA.JOBS jobs, TV_DATA.EMPLOYER employer, TV_DATA.EMPLOYERDETAILS employerDtls, TV_DATA.LOCATION location
+        WHERE jobs.STATUS = 1 AND
+        employer.EMPLOYER_ID = jobs.EMPLOYER_ID AND
+        employerDtls.EMPLOYER_ID = employer.EMPLOYER_ID AND
+        jobs.LOCATION_ID = location.LOCATION_ID 
+		
+  </select>
+  
+  <select id="getJobsWithIntroReward" resultMap="jobDtlsResultMap">
+      
+	SELECT  jobs.JOB_ID, jobs.JOB_TITLE, jobs.REFERAL_AMOUNT, jobs.INTRO_AMOUNT, employerDtls.COMPANY_NAME, location.CITYNAME 
+        FROM TV_DATA.JOBS jobs, TV_DATA.EMPLOYER employer, TV_DATA.EMPLOYERDETAILS employerDtls, TV_DATA.LOCATION location
+        WHERE jobs.STATUS = 1 AND
+        employer.EMPLOYER_ID = jobs.EMPLOYER_ID AND
+        employerDtls.EMPLOYER_ID = employer.EMPLOYER_ID AND
+        jobs.LOCATION_ID = location.LOCATION_ID AND
+        (jobs.INTRO_AMOUNT IS NOT NULL AND jobs.INTRO_AMOUNT != 0.00) ORDER BY jobs.INTRO_AMOUNT desc
+		
+  </select>
+
+  
+   <select id="getFresherJobs" resultMap="jobDtlsResultMap">
+      
+	SELECT  jobs.JOB_ID, jobs.JOB_TITLE, jobs.REFERAL_AMOUNT, jobs.INTRO_AMOUNT, employerDtls.COMPANY_NAME, location.CITYNAME 
+        FROM TV_DATA.JOBS jobs, TV_DATA.EMPLOYER employer, TV_DATA.EMPLOYERDETAILS employerDtls, TV_DATA.LOCATION location
+        WHERE jobs.STATUS = 1 AND
+        employer.EMPLOYER_ID = jobs.EMPLOYER_ID AND
+        employerDtls.EMPLOYER_ID = employer.EMPLOYER_ID AND
+        jobs.LOCATION_ID = location.LOCATION_ID AND
+        (jobs.INTRO_AMOUNT IS NOT NULL AND jobs.INTRO_AMOUNT != 0.00) ORDER BY jobs.INTRO_AMOUNT desc
+		
+  </select>
+   
+    <!--Common result map for the quries getFresherJobs, getJobsWithIntroReward, getTopJobs -->
+  <resultMap id="jobDtlsResultMap" type="com.talentvouch.usebeans.JobDtlsVO">
+	  
+	  <result property="jobId" column="JOB_ID"/>
+	  <result property="jobTitle" column="JOB_TITLE"/> 
+	  <result property="refAmount" column="REFERAL_AMOUNT"/>
+          <result property="introAmount" column="INTRO_AMOUNT"/>
+	  <result property="compName" column="COMPANY_NAME"/> 
+	  <result property="cityName" column="CITYNAME"/>
+      
+  </resultMap>
   
 </mapper>

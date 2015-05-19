@@ -7,6 +7,9 @@ package com.talentvouch.dao.access;
 
 import com.talentvouch.mapper.DataMapper;
 import com.talentvouch.model.login.LoginDtls;
+import com.talentvouch.usebeans.CategoryVO;
+import com.talentvouch.usebeans.JobDtlsVO;
+import java.util.List;
 
 /**
  *
@@ -25,6 +28,8 @@ public class DataAccessMgrDAOImpl implements DataAccessMgrDAO{
         return getDataMapper().getLoginCredentials(loginDtls);
     }
 
+   
+    
     /**
      *
      * @return dataMapper
@@ -41,5 +46,22 @@ public class DataAccessMgrDAOImpl implements DataAccessMgrDAO{
         this.dataMapper = dataMapper;
     }
 
+    @Override
+    public List<CategoryVO> getCategoryDetails() {
+        return getDataMapper().getCategoryDetails();
+    }
+
+    @Override
+    public List<JobDtlsVO> getTopJobs() {
+        
+        return getDataMapper().getTopJobs();
+    }
+
+    @Override
+    public List<JobDtlsVO> getJobsWithIntroReward() {
+        return getDataMapper().getJobsWithIntroReward();
+    }
+
+    
     
 }

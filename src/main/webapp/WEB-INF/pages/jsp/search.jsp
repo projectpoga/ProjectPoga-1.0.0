@@ -1,4 +1,5 @@
 <!doctype html>
+<%@include file="/WEB-INF/pages/jspf/envsetup.jspf"%>
 <html lang="en">
 	<head>
 		
@@ -17,9 +18,9 @@
 		<!-- Favicon -->
 
 		<!-- Bootstrap CSS-->
-		<link href="includes/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-		<link href="includes/bsselect/css/bootstrap-select.min.css" rel="stylesheet" type="text/css">
-		<link href="includes/slider/css/bootstrap-slider.min.css" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/includes/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/includes/bsselect/css/bootstrap-select.min.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/includes/slider/css/bootstrap-slider.min.css"/>" rel="stylesheet" type="text/css">
 
 		<!--<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
 
@@ -27,19 +28,19 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 		<!-- Animate.css -->
-		<link href="includes/css/animate.css" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/includes/css/animate.css"/>" rel="stylesheet" type="text/css">
 
 		<!-- style.css -->
-		<link href="includes/css/style-purple.css" rel="stylesheet" type="text/css">
-		<link href="includes/css/style-search.css" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/includes/css/style-purple.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/includes/css/style-search.css"/>" rel="stylesheet" type="text/css">
 		<!-- jQuery 1.11.2 Plugin -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<!--<script language="javascript" src="js/jquery-1.11.2.min.js"></script>-->
 		<!--<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>-->
 		<!-- Bootstrap.js -->
-		<script src="includes/js/bootstrap.min.js"></script>
-		<script src="includes/bsselect/js/bootstrap-select.min.js"></script>
-		<script src="includes/slider/bootstrap-slider.min.js"></script>
+		<script src="<c:url value="/resources/includes/js/bootstrap.min.js"/>"></script>
+		<script src="<c:url value="/resources/includes/bsselect/js/bootstrap-select.min.js"/>"></script>
+		<script src="<c:url value="/resources/includes/slider/bootstrap-slider.min.js"/>"></script>
 	</head>
 	<body>
 
@@ -99,7 +100,7 @@
 						<div class="collapse navbar-collapse" id="navbar-home">
 							<ul class="nav navbar-nav navbar-right">
 								<li>
-									<a href="index.php">Home</a>
+									<a href="index.htm">Home</a>
 								</li>
 								<li>
 									<a href="#">How it Works</a>
@@ -684,8 +685,8 @@
 		</div>
 
 	</body>
-	<script src="includes/js/script.js"></script>
-	<script src="includes/js/search-script.js"></script>
+	<script src="<c:url value="/resources/includes/js/script.js"/>"></script>
+	<script src="<c:url value="/resources/includes/js/search-script.js"/>"></script>
 	<script>
 		$("#vouch-range-slider").slider({ step: 1, min: 0, max: 10000, value: [0, 10000], focus: true, tooltip: 'hide' });
     	$("#vouch-range-slider").on("slide", function(slideEvt) {

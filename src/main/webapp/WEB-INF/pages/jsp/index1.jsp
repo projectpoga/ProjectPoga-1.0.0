@@ -10,7 +10,7 @@
 
     <body>
         <center><h1>LoginForm</h1>
-            <form method="post"action="index.htm" >
+            <form method="post"action="login.htm" >
     UserName<input type="text" name="userName"/><br>
     Password :<input type="password" name="password"/><br>
     <input type="submit" value="Login" />

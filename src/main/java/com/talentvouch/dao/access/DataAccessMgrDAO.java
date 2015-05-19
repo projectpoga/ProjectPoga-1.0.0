@@ -6,6 +6,9 @@
 package com.talentvouch.dao.access;
 
 import com.talentvouch.model.login.LoginDtls;
+import com.talentvouch.usebeans.CategoryVO;
+import com.talentvouch.usebeans.JobDtlsVO;
+import java.util.List;
 
 /**
  *
@@ -19,4 +22,9 @@ public interface DataAccessMgrDAO {
      * @return LoginDtls
      */
     public LoginDtls getLoginCredentials(LoginDtls loginDtls);
+    public List<CategoryVO> getCategoryDetails();
+    public List<JobDtlsVO> getTopJobs();
+    
+    public List<JobDtlsVO> getJobsWithIntroReward();
+    
 }
