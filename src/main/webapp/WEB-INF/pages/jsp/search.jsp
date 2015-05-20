@@ -1,8 +1,10 @@
 <!doctype html>
 <%@include file="/WEB-INF/pages/jspf/envsetup.jspf"%>
+<%@page import="org.ocpsoft.prettytime.PrettyTime, java.util.Date,java.text.SimpleDateFormat,java.text.ParseException"%> 
+
 <html lang="en">
 	<head>
-		
+	
 		<!-- title -->
 		<title>Refers | Refer Jobs Earn Rewards - Apply jobs | Job Referal Portal</title>
 
@@ -52,31 +54,9 @@
 			<div class="category-body reached-bottom" id="category-body">
 				<div id="ctg-list-body">
 					<ul class="nav nav-pills nav-stacked" id="category-list">
-						<li><a href="#">Application Development <span class="badge">3</span></a></li>
-						<li><a href="#">Automation <span class="badge">3</span></a></li>
-						<li><a href="#">BPO <span class="badge">3</span></a></li>
-						<li><a href="#">Business Development <span class="badge">3</span></a></li>
-						<li><a href="#">Client Servicing <span class="badge">3</span></a></li>
-						<li><a href="#">Computers <span class="badge">3</span></a></li>
-						<li><a href="#">Content /  Journalism <span class="badge">3</span></a></li>
-						<li><a href="#">Copy Writer <span class="badge">3</span></a></li>
-						<li><a href="#">Creative Design <span class="badge">3</span></a></li>
-						<li><a href="#">Engineering Design <span class="badge">3</span></a></li>
-						<li><a href="#">Finance <span class="badge">3</span></a></li>
-						<li><a href="#">HR / Administration / IR <span class="badge">3</span></a></li>
-						<li><a href="#">IT Software - Application Programming <span class="badge">3</span></a></li>
-						<li><a href="#">IT Software - E-Commerce / Internet <span class="badge">3</span></a></li>
-						<li><a href="#">IT Software - Mobile <span class="badge">3</span></a></li>
-						<li><a href="#">Marketing / Advertising <span class="badge">3</span></a></li>
-						<li><a href="#">Product Development <span class="badge">3</span></a></li>
-						<li><a href="#">Product Training <span class="badge">3</span></a></li>
-						<li><a href="#">Program Manager <span class="badge">3</span></a></li>
-						<li><a href="#">Project Manager <span class="badge">3</span></a></li>
-						<li><a href="#">Sales / BD <span class="badge">3</span></a></li>
-						<li><a href="#">Sales Training <span class="badge">3</span></a></li>
-						<li><a href="#">Teaching / Education / Training <span class="badge">3</span></a></li>
-						<li><a href="#">UX / UI <span class="badge">3</span></a></li>
-						<li><a href="#">Web / Graphic Design / Visualiser <span class="badge">3</span></a></li>
+						 <c:forEach var="categoryList" items="${categoryModelList}">
+                                                <li><a href="#">${categoryList.categoryName} <span class="badge">${categoryList.jobsCount}</span></a><input type="hidden" name="<c:out value="${fn:trim(categoryList.categoryName)}" />" id="${categoryList.categoryId}" value="${categoryList.categoryId}"/></li>
+					    </c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -106,7 +86,7 @@
 									<a href="#">How it Works</a>
 								</li>
 								<li class="active">
-									<a href="jobs.php">Jobs</a>
+									<a href="jobs.htm">Jobs</a>
 								</li>
 								<li>
 									<a href="#">Sign In</a>
@@ -126,17 +106,17 @@
 					<h1 id="intro-title" class="text-center">You vouch us, we vouch you!</small></h1>
 					<p class="text-center"></p>
 					<div class="panel panel-default panel-body" id="plain-search-body">	
-						<form class="form-inline">
+						<form class="form-inline" action="search.htm" method="post">
 							<div class="row" id="search-form-body">
 								<div class="col-sm-12 col-md-6 col">
 									<div class="row">
 										<div class="form-group col-sm-6 col-md-6">
-											<label class="sr-only" for="skills-desg">Skills, Designation, Companies</label>
-											<input type="text" class="form-control" id="skills-desg" placeholder="Skills, Designation, Companies">
+											<label class="sr-only" for="skills-desg">Skills, Designation</label>
+											<input type="text" name="jobTitle" class="form-control" id="skills-desg" placeholder="Skills">
 										</div>
 										<div class="form-group col-sm-6 col-md-6">
 											<label class="sr-only" for="location">Preferred Location</label>
-											<input type="text" class="form-control" id="location" placeholder="Location">
+											<input type="text" name="location" class="form-control" id="location" placeholder="Location">
 										</div>
 									</div>
 								</div>
@@ -144,11 +124,11 @@
 									<div class="row">
 										<div class="form-group col-sm-5 col-md-5">
 											<label class="sr-only" for="location">Experience</label>
-											<input type="text" class="form-control" id="location" placeholder="Experience">
+											<input type="text" name="experience" class="form-control" id="location" placeholder="Experience">
 										</div>
 										<div class="form-group col-sm-5 col-md-5">
 											<label class="sr-only" for="location">Salary</label>
-											<input type="text" class="form-control" id="location" placeholder="Salary">
+											<input type="text" name="salary" class="form-control" id="location" placeholder="Salary">
 										</div>
 										<div class="form-group col-sm-2 col-md-2">
 											<button type="submit" class="btn btn-default" id="plain-search-btn"><i class="fa fa-search"></i></button>
@@ -467,7 +447,20 @@
 								</form>
 							</div>
 						</div>
+                                            
+                                            	<%!
+                                                    //This method converts the time stamp to days ago ex:30 min ago, 1 day ago
+                                                    String convertTimeStamp(String timeStamp) throws ParseException {
+                                                        PrettyTime p = new PrettyTime();
+                                                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+                                                     Date past = format.parse(timeStamp);
+                                                     return p.format(past);
+                                                    } 
+                                                    %>
 						<div class="col-sm-8 col-md-7 col-lg-7" id="query-jobs-list">
+                                                    <c:forEach var="jobDtlsObj" items="${refinedJobs}">
+                                                        
+                                                    
 							<div class="panel panel-default job-post-container">
 								<div class="panel-body job-post-body">
 									<div class="job-post-wrap">
@@ -477,12 +470,12 @@
 											</div>
 											<div class="xol-xs-8 col-sm-9 col-md-10 job-post-details">
 												<div class="main-details">
-													<h4 class="job-post-title"><a href="#">Sr. Web Developer Specialist - PHP & Wordpress</a></h4>
-													<p class="ct">Company Name Pvt Ltd</p>
+													<h4 class="job-post-title"><a href="#">${jobDtlsObj.jobTitle}</a></h4>
+													<p class="ct">${jobDtlsObj.compName}</p>
 													<div class="row">
 														<div class="exp-loc col-xs-12">
-															<span class="et"><i class="fa fa-briefcase"></i>&nbsp;2-4 Yrs</span>
-															<span class="et"><i class="fa fa-map-marker"></i>&nbsp;Visakhapatnam</span>
+															<span class="et"><i class="fa fa-briefcase"></i>&nbsp;${jobDtlsObj.experienceRequired} Yrs</span>
+															<span class="et"><i class="fa fa-map-marker"></i>&nbsp;${jobDtlsObj.location}</span>
 														</div>
 													</div>
 												</div>
@@ -494,7 +487,7 @@
 													Key Skills
 												</div>
 												<div class="col-xs-9 col-sm-9 col-md-10 sd">
-													HTML, Jquery, CSS, Bootstrap, Java Script.
+													${jobDtlsObj.skillsRequired}
 												</div>
 											</div>
 											<div class="row">
@@ -502,7 +495,7 @@
 													Description
 												</div>
 												<div class="col-xs-9 col-sm-9 col-md-10 jd">
-													Looking for Web Developer with good communication skills written and verbal, flexible to work in night shifts and willing to join immediately. 1. Ability to create good responsive websites, clean and strong visual designs. 2. Create visually appealing ...
+													${jobDtlsObj.jobDesc}
 												</div>
 											</div>
 										</div>
@@ -510,105 +503,17 @@
 								</div>
 								<div class="panel-footer">
 									<div class="slr-pd">
-										<span class="slr"><i class="fa fa-inr"></i> 1,75,000 - 2,50,000</span>
-										<span class="pd"><span class="post-by">Posted by, <a href="">Nishant Kumar</a>,</span>&nbsp;<span class="post-date">15 Days ago.</span></span>
+										<span class="slr"><i class="fa fa-inr"></i>${jobDtlsObj.salary}</span>
+                                                                                <c:set var="postedDate" value="${jobDtlsObj.postedDate}"/>
+                                                                                <%String posted=convertTimeStamp(pageContext.getAttribute("postedDate").toString());%>
+                                                                                <span class="pd"><span class="post-by">Posted by, <a href="">${jobDtlsObj.employer}</a>,</span>&nbsp;<span class="post-date"><%=posted%>.</span></span>
 									</div>
 								</div>
 							</div>
-							<div class="panel panel-default job-post-container">
-								<div class="panel-body job-post-body">
-									<div class="job-post-wrap">
-										<div class="row">
-											<div class="col-xs-4 col-sm-3 col-md-2 post-clogo">
-												<a href="#"><img src="includes/img/company_logo.jpg" class="img-responsive"></a>
-											</div>
-											<div class="xol-xs-8 col-sm-9 col-md-10 job-post-details">
-												<div class="main-details">
-													<h4 class="job-post-title"><a href="#">Sr. Web Developer Specialist - PHP & Wordpress</a></h4>
-													<p class="ct">Company Name Pvt Ltd</p>
-													<div class="row">
-														<div class="exp-loc col-xs-12">
-															<span class="et"><i class="fa fa-briefcase"></i>&nbsp;2-4 Yrs</span>
-															<span class="et"><i class="fa fa-map-marker"></i>&nbsp;Visakhapatnam</span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="job-post-desc">
-											<div class="row">
-												<div class="col-xs-3 col-sm-3 col-md-2 sh">
-													Key Skills
-												</div>
-												<div class="col-xs-9 col-sm-9 col-md-10 sd">
-													HTML, Jquery, CSS, Bootstrap, Java Script.
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-xs-3 col-sm-3 col-md-2 jdh">
-													Description
-												</div>
-												<div class="col-xs-9 col-sm-9 col-md-10 jd">
-													Looking for Web Developer with good communication skills written and verbal, flexible to work in night shifts and willing to join immediately. 1. Ability to create good responsive websites, clean and strong visual designs. 2. Create visually appealing ...
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="panel-footer">
-									<div class="slr-pd">
-										<span class="slr"><i class="fa fa-inr"></i> 1,75,000 - 2,50,000</span>
-										<span class="pd"><span class="post-by">Posted by, <a href="">Nishant Kumar</a>,</span>&nbsp;<span class="post-date">15 Days ago.</span></span>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default job-post-container">
-								<div class="panel-body job-post-body">
-									<div class="job-post-wrap">
-										<div class="row">
-											<div class="col-xs-4 col-sm-3 col-md-2 post-clogo">
-												<a href="#"><img src="includes/img/company_logo.jpg" class="img-responsive"></a>
-											</div>
-											<div class="xol-xs-8 col-sm-9 col-md-10 job-post-details">
-												<div class="main-details">
-													<h4 class="job-post-title"><a href="#">Sr. Web Developer Specialist - PHP & Wordpress</a></h4>
-													<p class="ct">Company Name Pvt Ltd</p>
-													<div class="row">
-														<div class="exp-loc col-xs-12">
-															<span class="et"><i class="fa fa-briefcase"></i>&nbsp;2-4 Yrs</span>
-															<span class="et"><i class="fa fa-map-marker"></i>&nbsp;Visakhapatnam</span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="job-post-desc">
-											<div class="row">
-												<div class="col-xs-3 col-sm-3 col-md-2 sh">
-													Key Skills
-												</div>
-												<div class="col-xs-9 col-sm-9 col-md-10 sd">
-													HTML, Jquery, CSS, Bootstrap, Java Script.
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-xs-3 col-sm-3 col-md-2 jdh">
-													Description
-												</div>
-												<div class="col-xs-9 col-sm-9 col-md-10 jd">
-													Looking for Web Developer with good communication skills written and verbal, flexible to work in night shifts and willing to join immediately. 1. Ability to create good responsive websites, clean and strong visual designs. 2. Create visually appealing ...
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="panel-footer">
-									<div class="slr-pd">
-										<span class="slr"><i class="fa fa-inr"></i> 1,75,000 - 2,50,000</span>
-										<span class="pd"><span class="post-by">Posted by, <a href="">Nishant Kumar</a>,</span>&nbsp;<span class="post-date">15 Days ago.</span></span>
-									</div>
-								</div>
-							</div>
+                                                    </c:forEach>
+                                                    <!--End of div -->
+						
+                                                    <!--End of main div -->
 						</div>
 					</div>
 				</div>
@@ -687,11 +592,4 @@
 	</body>
 	<script src="<c:url value="/resources/includes/js/script.js"/>"></script>
 	<script src="<c:url value="/resources/includes/js/search-script.js"/>"></script>
-	<script>
-		$("#vouch-range-slider").slider({ step: 1, min: 0, max: 10000, value: [0, 10000], focus: true, tooltip: 'hide' });
-    	$("#vouch-range-slider").on("slide", function(slideEvt) {
-			$("#vr-val1").text(slideEvt.value[0]);
-			$("#vr-val2").text(slideEvt.value[1]);
-		});
-	</script>
 </html>

@@ -47,6 +47,13 @@ public class ViewForwardController{
        return new ModelAndView("index");
         
     }
+      @RequestMapping("/index1")
+    public ModelAndView index1() throws Exception {
+        
+        
+       return new ModelAndView("index1");
+        
+    }
     
      @RequestMapping("/jobs")
     public ModelAndView jobs() throws Exception {
@@ -56,16 +63,15 @@ public class ViewForwardController{
         jobModel.addObject("categoryModelList", getDataAccessMgrDAOImpl().getCategoryDetails());
         
         jobModel.addObject("topJobsList", getDataAccessMgrDAOImpl().getTopJobs());
+        
+        jobModel.addObject("fresherJobsList", getDataAccessMgrDAOImpl().getFresherJobs());
+        
+        jobModel.addObject("introRewardJobsList", getDataAccessMgrDAOImpl().getJobsWithIntroReward());
+        
        return jobModel;
         
     }
-     @RequestMapping("/search")
-    public ModelAndView search() throws Exception {
-       // ModelAndView searchModel = new ModelAndView("search");
-        //searchModel.addObject("categoryList", getDataAccessMgrDAOImpl().getCategoryDetails());
-       return new ModelAndView("search");
-        
-    }
+  
 
     public DataAccessMgrDAOImpl getDataAccessMgrDAOImpl() {
         return dataAccessMgrDAOImpl;

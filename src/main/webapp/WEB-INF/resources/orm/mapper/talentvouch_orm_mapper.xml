@@ -67,7 +67,7 @@
         employer.EMPLOYER_ID = jobs.EMPLOYER_ID AND
         employerDtls.EMPLOYER_ID = employer.EMPLOYER_ID AND
         jobs.LOCATION_ID = location.LOCATION_ID AND
-        (jobs.INTRO_AMOUNT IS NOT NULL AND jobs.INTRO_AMOUNT != 0.00) ORDER BY jobs.INTRO_AMOUNT desc
+        (jobs.EXPERIENCEREQUIRED = 0.00) ORDER BY jobs.INTRO_AMOUNT desc
 		
   </select>
    
@@ -80,6 +80,46 @@
           <result property="introAmount" column="INTRO_AMOUNT"/>
 	  <result property="compName" column="COMPANY_NAME"/> 
 	  <result property="cityName" column="CITYNAME"/>
+      
+  </resultMap>
+  
+  <select id="getRelevantJobs" parameterType="com.talentvouch.model.search.SearchJobInputDtls" resultMap="relevantJobsResultMap">
+      
+    SELECT jobs.JOB_TITLE, empDtls.COMPANY_NAME, jobs.SALARY, jobs.EXPERIENCEREQUIRED, location.CITYNAME, jobs.SKILLSREQUIRED, jobs.LONGDESC,
+            employer.EMP_DISPLAYNAME, jobs.CREATED_DATE
+    FROM TV_DATA.JOBS jobs, TV_DATA.EMPLOYER employer, TV_DATA.EMPLOYERDETAILS empDtls, TV_DATA.LOCATION location 
+    WHERE 1=1 AND
+            <if test="jobTitle != null">
+                LOWER(jobs.JOB_TITLE) LIKE '%${jobTitle}%' AND
+            </if>
+            <if test="location != null">
+                LOWER(location.CITYNAME) LIKE '%${location}%' AND
+            </if>
+            <if test="salary != null">
+                 LOWER(jobs.salary) LIKE '%${salary}%' AND
+            </if>
+            <if test="experience != null">
+                 LOWER(jobs.EXPERIENCEREQUIRED) LIKE '%${experience}%' AND
+            </if>
+
+          jobs.EMPLOYER_ID = employer.EMPLOYER_ID AND
+          employer.EMPLOYER_ID = empDtls.EMPLOYER_ID AND
+          location.LOCATION_ID = jobs.LOCATION_ID
+
+  </select>
+  
+   <resultMap id="relevantJobsResultMap" type="com.talentvouch.usebeans.RefinedJobDtlsVO">
+	  
+        <result property="jobTitle" column="JOB_TITLE"/>
+	<result property="compName" column="COMPANY_NAME"/> 
+        <result property="location" column="CITYNAME"/>
+	<result property="skillsRequired" column="SKILLSREQUIRED"/> 
+        <result property="experienceRequired" column="EXPERIENCEREQUIRED"/> 
+        <result property="jobDesc" column="LONGDESC"/>
+        <result property="salary" column="SALARY"/>
+	<result property="employer" column="EMP_DISPLAYNAME"/> 
+        <result property="postedDate" column="CREATED_DATE"/> 
+	  
       
   </resultMap>
   

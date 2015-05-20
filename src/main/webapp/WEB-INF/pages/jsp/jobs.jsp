@@ -97,17 +97,17 @@
 					<h1 id="intro-title" class="text-center">You vouch us, we vouch you!</small></h1>
 					<p class="text-center"></p>
 					<div class="panel panel-default panel-body" id="plain-search-body">	
-						<form class="form-inline">
+                                            <form class="form-inline" action="search.htm" method="post">
 							<div class="row" id="search-form-body">
 								<div class="col-sm-12 col-md-6 col">
 									<div class="row">
 										<div class="form-group col-sm-6 col-md-6">
-											<label class="sr-only" for="skills-desg">Skills, Designation, Companies</label>
-											<input type="text" class="form-control" id="skills-desg" placeholder="Skills, Designation, Companies">
+											<label class="sr-only" for="skills-desg">Skills, Designation</label>
+											<input type="text" name="jobTitle" class="form-control" id="skills-desg" placeholder="Skills">
 										</div>
 										<div class="form-group col-sm-6 col-md-6">
 											<label class="sr-only" for="location">Preferred Location</label>
-											<input type="text" class="form-control" id="location" placeholder="Location">
+											<input type="text" name="location" class="form-control" id="location" placeholder="Location">
 										</div>
 									</div>
 								</div>
@@ -115,11 +115,11 @@
 									<div class="row">
 										<div class="form-group col-sm-5 col-md-5">
 											<label class="sr-only" for="location">Experience</label>
-											<input type="text" class="form-control" id="location" placeholder="Experience">
+											<input type="text" name="experience" class="form-control" id="location" placeholder="Experience">
 										</div>
 										<div class="form-group col-sm-5 col-md-5">
 											<label class="sr-only" for="location">Salary</label>
-											<input type="text" class="form-control" id="location" placeholder="Salary">
+											<input type="text" name="salary" class="form-control" id="location" placeholder="Salary">
 										</div>
 										<div class="form-group col-sm-2 col-md-2">
 											<button type="submit" class="btn btn-default" id="plain-search-btn"><i class="fa fa-search"></i></button>
@@ -222,6 +222,91 @@
 						<div class="panel panel-default panel-body" id="refers-posts-body">
 							<h3 class="post-category-title">Fresher Jobs <a href="#" class="btn-md">View All</a></h3>
 							<div class="cslick-1">
+                                                            <c:forEach var="fresherJobsObj" items="${fresherJobsList}"> 
+			                    <div>
+			                        <div class="post-single">
+										<div class="panel panel-default panel-body post-single-body">
+											<div class="post-title">
+												<h4 class="text-center">
+													<a href="#">${fresherJobsObj.jobTitle}</a>
+													<div><small>${fresherJobsObj.compName}</small></div>
+												</h4>
+											</div>
+											<div class="post-details">
+												<div class="job-details">
+													<div class="row">
+														<div class="col-xs-6">
+															<div class="icon">
+																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
+															</div>
+														</div>
+														<div class="col-xs-6">
+															<div class="post-action">
+																<p><a class="btn btn-primary apply" href="#">Apply</a></p>
+																<p><a href="#" class="btn-refer btn refer">Refer Now!</a></p>
+															</div>
+														</div>
+													</div>
+													<p class="location">Location: <span>${fresherJobsObj.cityName}</span></p>
+												</div>
+												<div class="reward-details text-center">
+													<div class="row">
+														<div class="col-xs-6">
+															<p class="reward-title">Intro Vouch</p>
+															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>${fresherJobsObj.introAmount}</span>/-</b></p>
+														</div>
+														<div class="col-xs-6">
+															<p class="reward-title">Referral Vouch</p>
+															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>${fresherJobsObj.refAmount}</span>/-</b></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+			                    	</div>
+			                    </div>
+			                    </c:forEach>
+			                  
+			                   <!--div start-->
+                                           <!--<div>
+			                        <div class="post-single">
+										<div class="panel panel-default panel-body post-single-body">
+											<div class="post-title">
+												<h4 class="text-center">
+													<a href="#">Job Title</a>
+													<div><small>Company Title</small></div>
+												</h4>
+											</div>
+											<div class="post-details">
+												<div class="job-details">
+													<div class="row">
+														<div class="col-xs-6">
+															<div class="icon">
+																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
+															</div>
+														</div>
+														<div class="col-xs-6">
+															<div class="post-action">
+																<p><a class="btn btn-primary apply" href="#">Apply</a></p>
+																<p><a href="#" class="btn-refer btn refer">Refer Now!</a></p>
+															</div>
+														</div>
+													</div>
+													<p class="location">Location: <span>Visakhapatnam</span></p>
+												</div>
+												<div class="reward-details text-center">
+													<div class="row">
+														<div class="col-xs-12">
+															<p class="reward-title">Referral Vouch</p>
+															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>22000</span>/-</b></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+			                    	</div>
+			                    </div>
+                                           
 			                    <div>
 			                        <div class="post-single">
 										<div class="panel panel-default panel-body post-single-body">
@@ -412,51 +497,60 @@
 										</div>
 			                    	</div>
 			                    </div>
-			                    <div>
-			                        <div class="post-single">
-										<div class="panel panel-default panel-body post-single-body">
-											<div class="post-title">
-												<h4 class="text-center">
-													<a href="#">Job Title</a>
-													<div><small>Company Title</small></div>
-												</h4>
-											</div>
-											<div class="post-details">
-												<div class="job-details">
-													<div class="row">
-														<div class="col-xs-6">
-															<div class="icon">
-																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
-															</div>
-														</div>
-														<div class="col-xs-6">
-															<div class="post-action">
-																<p><a class="btn btn-primary apply" href="#">Apply</a></p>
-																<p><a href="#" class="btn-refer btn refer">Refer Now!</a></p>
-															</div>
-														</div>
-													</div>
-													<p class="location">Location: <span>Visakhapatnam</span></p>
-												</div>
-												<div class="reward-details text-center">
-													<div class="row">
-														<div class="col-xs-12">
-															<p class="reward-title">Referral Vouch</p>
-															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>22000</span>/-</b></p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-			                    	</div>
-			                    </div>
+                                           -->
+                                           <!--div end--> 
 			                </div>
 						</div>
 
 						<div class="panel panel-default panel-body" id="refers-posts-body">
 							<h3 class="post-category-title">Intro Reward Jobs <a href="#" class="btn-md">View All</a></h3>
 							<div class="cslick-2">
+                                                            
+                                                            <c:forEach var="introRewardJobsObj" items="${introRewardJobsList}"> 
 			                    <div>
+			                        <div class="post-single">
+										<div class="panel panel-default panel-body post-single-body">
+											<div class="post-title">
+												<h4 class="text-center">
+													<a href="#">${introRewardJobsObj.jobTitle}</a>
+													<div><small>${introRewardJobsObj.compName}</small></div>
+												</h4>
+											</div>
+											<div class="post-details">
+												<div class="job-details">
+													<div class="row">
+														<div class="col-xs-6">
+															<div class="icon">
+																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
+															</div>
+														</div>
+														<div class="col-xs-6">
+															<div class="post-action">
+																<p><a class="btn btn-primary apply" href="#">Apply</a></p>
+																<p><a href="#" class="btn-refer btn refer">Refer Now!</a></p>
+															</div>
+														</div>
+													</div>
+													<p class="location">Location: <span>${introRewardJobsObj.cityName}</span></p>
+												</div>
+												<div class="reward-details text-center">
+													<div class="row">
+														<div class="col-xs-6">
+															<p class="reward-title">Intro Vouch</p>
+															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>${introRewardJobsObj.introAmount}</span>/-</b></p>
+														</div>
+														<div class="col-xs-6">
+															<p class="reward-title">Referral Vouch</p>
+															<p class="reward-price"><i class="fa fa-inr"></i> <b><span>${introRewardJobsObj.refAmount}</span>/-</b></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+			                    	</div>
+			                    </div>
+			                    </c:forEach>
+			                   <!-- <div>
 			                        <div class="post-single">
 										<div class="panel panel-default panel-body post-single-body">
 											<div class="post-title">
@@ -710,8 +804,8 @@
 			                    </div>
 			                </div>
 						</div>
-					</div>
-				</div>
+					</div> -->
+				</div> 
 			</div>
 
 			<!-- Footer -->
