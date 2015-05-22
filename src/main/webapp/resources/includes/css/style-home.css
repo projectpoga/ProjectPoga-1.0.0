@@ -151,6 +151,17 @@ a:focus, a:hover {
 .navbar-default .navbar-brand:active {
 	color: #fff;
 }
+
+.navbar-brand sup {
+	padding: 1px 3px;
+	background-color: #D71E24;
+	color: #fff;
+	border-radius: 2px;
+	top: -8px;
+	font-weight: bold;
+	font-size: 11px;
+}
+
 .navbar-default .navbar-toggle,
 .sb-toggle {
 	position: relative;
@@ -224,6 +235,11 @@ a:focus, a:hover {
 	background-color: #611982;
 }
 
+.my-account img {
+	position: relative;
+	top: -5px;
+}
+
 /* Welcome */
 #welcome {
 	overflow: hidden;
@@ -243,9 +259,7 @@ a:focus, a:hover {
 }
 
 .dullness {
-	position: absolute; 
-	top: 0; 
-	bottom: 0; 
+	position: absolute;
 	left: 0; 
 	right: 0; 
 	background-color: rgba(97, 25, 130, 0.50);
@@ -317,6 +331,20 @@ a:focus, a:hover {
 	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(255, 255, 255, 1);
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(255, 255, 255, 1);
 }
+
+#login .form-control:focus {
+	border-color: #8C35B3;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(140, 140, 140, 0.5),0 0 5px rgba(140, 53, 179, 1);
+	box-shadow: inset 0 1px 1px rgba(140, 140, 140, 0.5),0 0 5px rgba(140, 53, 179, 1);
+}
+
+.form-control.error {
+	border-color: #D71E24;
+	-webkit-box-shadow: inset 0 1px 1px rgba(140, 140, 140, 0.5),0 0 5px #D71E24;
+	box-shadow: inset 0 1px 1px rgba(140, 140, 140, 0.5),0 0 5px #D71E24;
+}
+
 #job-search-body input::-webkit-input-placeholder {
    color: #611982;
 }
@@ -653,7 +681,10 @@ footer a:focus {
 	}
 	.navbar-default .navbar-collapse {
 		background-color: transparent;
-
+	}
+	.navbar-nav {
+		top: 5px;
+		position: relative;
 	}
 	.navbar-scroll {
 		/*background-color: rgba(97, 25, 130, 0.5);*/
@@ -668,7 +699,7 @@ footer a:focus {
 		color: #fff;
 	}
 	.navbar-scroll .navbar-nav li {
-		padding: 10px;
+		padding-left: 10px;
 	}
 	.navbar-default .navbar-nav li a#employers-zone {
 		background-color: #fff;

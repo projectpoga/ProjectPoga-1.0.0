@@ -1,0 +1,89 @@
+#my-account {
+	padding: 0px 10px;
+	position: relative;
+	margin: 0px;
+	height: 50px;
+	background-color: transparent;
+	background-image: none;
+	border: 1px solid transparent;
+	float: right;
+	border-radius: 0px;
+	outline: none;
+}
+.my-account {
+	background-color: transparent !important;
+}
+#my-account img, .my-account img {
+	border-radius: 50%;
+	background-color: #fff;
+	width: 30px;
+	height: 30px;
+}
+.acc-drop {
+	height: 50px;
+}
+.acc-drop:hover {
+	background-color: #eee;
+}
+.dropdown ul {
+	/*background-color: #D71E24;*/
+	background-color: #fff;
+}
+.dropdown ul:before {
+	content: '';
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	/*border-bottom: 8px solid #D71E24;*/
+	border-bottom: 8px solid #fff;
+	display: block;
+	position: absolute;
+	top: -8px;
+	right: 23px;
+}
+.dropdown ul li {
+	padding: 0px !important;
+}
+.dropdown ul li a {
+	color: #3d3d3d !important;
+	font-family: 'Helvetica',sans-serif;
+	padding: 5px 15px !important;
+	font-size: 14px;
+	text-transform: none !important;
+	/*color: #611982 !important;*/
+}
+.dropdown ul li a:hover,
+.dropdown ul li a:focus {
+	background-color: #482861;
+	background-color: #611982;
+	color: #fff !important;
+	/*color: #fff !important;*/
+}
+.dropdown ul li a i { font-size: 16px; }
+
+.dropdown-menu {
+	min-width: 140px;
+}
+
+/* Extra Small devices (Mobile Phones, 280px and up) */
+@media (min-width: 100px) {
+	#my-account {
+		visibility: visible;
+	}
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	#my-account {
+		visibility: hidden;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	
+}
