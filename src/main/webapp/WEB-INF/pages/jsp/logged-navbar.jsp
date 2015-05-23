@@ -8,7 +8,7 @@
 							<span class="icon-bar"></span>	
 						</button>
 						<button type="button" id="my-account">
-							<img src="includes/img/emp-icon.png" width="30px" />
+							<img src="" width="30px" />
 						</button>
 					</div>
 					<div class="collapse navbar-collapse" id="navbar-home">
