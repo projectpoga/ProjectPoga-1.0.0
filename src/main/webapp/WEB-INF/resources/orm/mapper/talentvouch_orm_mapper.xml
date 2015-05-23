@@ -90,10 +90,11 @@
     FROM TV_DATA.JOBS jobs, TV_DATA.EMPLOYER employer, TV_DATA.EMPLOYERDETAILS empDtls, TV_DATA.LOCATION location 
     WHERE 1=1 AND
             <if test="jobTitle != null">
-                LOWER(jobs.JOB_TITLE) LIKE '%${jobTitle}%' AND
+                (LOWER(jobs.JOB_TITLE) LIKE '%${jobTitle}%' OR LOWER(jobs.SKILLSREQUIRED) LIKE '%${jobTitle}%' OR
+                 LOWER(empDtls.COMPANY_NAME) LIKE '%${jobTitle}%') AND
             </if>
             <if test="location != null">
-                LOWER(location.CITYNAME) LIKE '%${location}%' AND
+                LOWER(location.CITYNAME) LIKE '%${location}%' AND 
             </if>
             <if test="salary != null">
                  LOWER(jobs.salary) LIKE '%${salary}%' AND

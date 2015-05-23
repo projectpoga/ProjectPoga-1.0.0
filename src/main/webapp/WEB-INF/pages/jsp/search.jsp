@@ -111,8 +111,8 @@
 								<div class="col-sm-12 col-md-6 col">
 									<div class="row">
 										<div class="form-group col-sm-6 col-md-6">
-											<label class="sr-only" for="skills-desg">Skills, Designation</label>
-											<input type="text" name="jobTitle" class="form-control" id="skills-desg" placeholder="Skills">
+											<label class="sr-only" for="skills-desg">Skills</label>
+											<input type="text" name="jobTitle" class="form-control" id="skills-desg" placeholder="Skills, Designation, Companies">
 										</div>
 										<div class="form-group col-sm-6 col-md-6">
 											<label class="sr-only" for="location">Preferred Location</label>
