@@ -34,7 +34,6 @@ $(function(){
 				},3000)
 				bool = 3;
 			}
-			event.stopPropagation();
 		})
 
 		setTimeout(function() {
@@ -53,7 +52,6 @@ $(function(){
 				$sb.removeClass('sb-active')
 				$page.removeClass('sb-open')
 			}
-			event.stopPropagation();
 		})
 		$sbtoggle.click(function(event){
 			/*if($sb.hasClass('sb-active') && $page.hasClass('sb-open')) {
@@ -64,8 +62,16 @@ $(function(){
 			$sb.addClass('sb-active')
 			$page.addClass('sb-open')
 			$('#sb-toggle[data-toggle="tooltip"]').tooltip('hide')
-			//}
-			event.stopPropagation();
+			$(this).css('z-index','999')
+			$sb.removeClass('hover')
+		})
+
+		$sbtoggle.hover(function(){
+			$sb.addClass('hover')
+			$(this).css('z-index','1200')
+		},function(){
+			$sb.css('left','')
+			$sb.removeClass('hover')
 		})
 
 		/*$(window).scroll(function(event){

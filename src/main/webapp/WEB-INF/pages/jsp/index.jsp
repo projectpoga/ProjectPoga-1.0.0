@@ -32,6 +32,8 @@
 		<link href="<c:url value="/resources/includes/css/animate.css"/>" rel="stylesheet" type="text/css">
 
 		<!-- style.css -->
+                <link href="<c:url value="/resources/includes/css/logged.css"/>" rel="stylesheet" type="text/css" >
+		<link href="<c:url value="/resources/includes/css/style-login.css"/>" rel="stylesheet" type="text/css" >
 		<link href="<c:url value="/resources/includes/css/style-home.css"/>" rel="stylesheet" type="text/css" >
 
 		<!-- jQuery 1.11.2 Plugin -->
@@ -45,10 +47,10 @@
 		<!-- Categories Side Bar -->
 		<div class="dullness"></div>
 		<div class="navholder">
-				<nav class="navbar navbar-default navbar-fixed-top">
+                    <nav class="navbar navbar-default navbar-fixed-top">
 					<div class="container">
 						<div class="navbar-header">
-							<a class="navbar-brand" href="#">TalentVouch<small class="hidden-xs hidden-sm">.com</small></a>
+							<a class="navbar-brand" href="#">TalentVouch<small class="hidden-xs hidden-sm">.com</small><sup>Beta</sup></a>
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-home">
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
@@ -64,10 +66,10 @@
 									<a href="#">How it Works<span class="hover"></span></a>
 								</li>
 								<li>
-									<a href="jobs.htm">Jobs<span class="hover"></span></a>
+									<a href="jobs.php">Jobs<span class="hover"></span></a>
 								</li>
 								<li>
-									<a href="#">Sign In<span class="hover"></span></a>
+									<a href="#SignIn" id="signin">Sign In<span class="hover"></span></a>
 								</li>
 								<li>
 									<a href="#" id="employers-zone">Employers<span class="hover hidden-sm hidden-md hidden-lg"></span></a>
@@ -77,6 +79,7 @@
 					</div>
 				</nav><!-- Responsive Navbar end -->
 		</div>
+		<%@include file="/WEB-INF/pages/jsp/login.jsp"%>
 		<div class="wrap sb-open">
 			<!-- Responsive Navbar -->
 			<div id="carousel-holder">
@@ -100,7 +103,7 @@
 					<div class="container" id="welcome-body">
 						<h1 class="text-center intro-title">Welcome to <b>TalentVouch</b><small>.com</small></h1>
 						<p class="text-center">Refer your peers, we vouch you with rewards!</p>
-						<form method="POST" action="search.htm" id="job-search-form">
+						<form method="" action="" id="job-search-form">
 							<div class="input-group" id="job-search-body">
 								<input type="text" class="form-control" placeholder="Search Job..." autofocus>
 								<span class="input-group-btn">
@@ -259,6 +262,44 @@
 					</form>
 				</div>
 			</div>
+			<div class="login" id="login">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+							<form>
+								<div class="form-wrap animated fadeInDown">
+									<button type="button" id="sic">
+										<i class="fa fa-times"></i>
+									</button>
+									<div class="title-logo">
+										<h1 class="text-center"><a id="home-uri" href="#">TalentVouch<sup>Beta</sup></a></h1>
+									</div>
+									<div class="row">
+										<h4 class="text-center logh">Login via</h4>
+										<div class="login-via center-block">
+											<a class="btn btn-fa" href="#"><i class="fa fa-facebook"></i></a>
+											<a class="btn btn-li" href="#"><i class="fa fa-linkedin"></i></a>
+											<a class="btn btn-gp" href="#"><i class="fa fa-google-plus"></i></a>
+										</div>
+									</div>
+									<h4 class="text-center">or</h4>
+									<div class="form-group">
+										<label class="label" for="exampleInputEmail1" id="userlabel">Email address</label>
+										<input type="email" class="form-control" id="InputEmail" placeholder="Enter email">
+									</div>
+									<div class="form-group">
+										<label class="label" for="exampleInputPassword1" id="passlabel">Password</label>
+										<input type="password" class="form-control" id="InputPassword" placeholder="Password">
+									</div>
+									<button type="submit" class="btn btn-block btn-default" id="sign-in">Sign In</button>
+								</div>
+							</form>
+							<p class="text-center" id="fp"><a href="#">Forgot password?</a></p>
+							<p id="sup" class="text-center"><a class="btn btn-danger" href="#">Sign Up</a>&nbsp;&nbsp;now and Earn Rewards.</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<!-- Footer -->
 			<footer>
@@ -267,7 +308,7 @@
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-8">
 								<div class="col-xs-12 col-sm-4 col-md-3">
-									<img width="100px" height="100px" class="img-circle" src="">
+                                                                    <img width="100px" height="100px" class="img-circle" src="<c:url value=""/>">
 								</div>
 								<div class="col-xs-6 col-sm-4 col-md-3">
 									<h4 class="ft-title">Information</h4>
@@ -337,5 +378,6 @@
 	<script src="<c:url value="/resources/includes/js/wow.min.js"/>"></script>
 	<script src="<c:url value="/resources/includes/js/jquery.counterup.min.js"/>"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+        <script src="<c:url value="/resources/includes/js/login-script.js"/>"></script>
 	<script src="<c:url value="/resources/includes/js/home-script.js"/>"></script>
 </html>
