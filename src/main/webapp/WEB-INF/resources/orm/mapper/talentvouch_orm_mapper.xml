@@ -136,17 +136,26 @@
       WHERE USERNAME = #{email}
   </select>
   
-  <select id="getJobCountByLocation" resultMap="jobCountByLocResultMap">
-      SELECT CITYNAME, COUNT(jobs.JOB_ID) as jobsCount
+  <select id="getJobCountByLocation" resultMap="jobCountResultMap">
+      SELECT CITYNAME as label, COUNT(jobs.JOB_ID) as jobsCount
       FROM TV_DATA.LOCATION location, TV_DATA.JOBS jobs
       WHERE location.STATUS = '1' AND 
             jobs.STATUS = '1' AND
             jobs.LOCATION_ID = location.LOCATION_ID GROUP BY jobs.LOCATION_ID
   </select>
   
-  <resultMap id="jobCountByLocResultMap" type="com.talentvouch.model.search.JobsCount">
+  <select id="getJobCountByJobTitle" resultMap="jobCountResultMap">
+      SELECT jobs.JOB_TITLE as label, COUNT(jobs.JOB_ID) as jobsCount
+      FROM TV_DATA.LOCATION location, TV_DATA.JOBS jobs
+      WHERE location.STATUS = '1' AND 
+            jobs.STATUS = '1' AND
+            jobs.LOCATION_ID = location.LOCATION_ID GROUP BY jobs.JOB_TITLE
+  </select>
+  
+  <!--Common result map for the quries getJobCountByLocation, getJobCountByJobTitle-->
+  <resultMap id="jobCountResultMap" type="com.talentvouch.model.search.JobsCount">
       <result property="jobsCount" column="jobsCount"/>
-      <result property="label" column="CITYNAME"/> 
+      <result property="label" column="label"/> 
   </resultMap>
   
 </mapper>

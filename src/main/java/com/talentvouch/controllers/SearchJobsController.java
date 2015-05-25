@@ -42,6 +42,7 @@ public class SearchJobsController {
       searchModel.addObject("categoryModelList", getDataAccessMgrDAOImpl().getCategoryDetails());
       searchModel.addObject("refinedJobs", refinedJobsDtls);
       searchModel.addObject("jobsCountByLocList", getDataAccessMgrDAOImpl().getJobCountByLocation());
+      searchModel.addObject("jobsCountByJobTitleList", getDataAccessMgrDAOImpl().getJobCountByJobTitle());
       
        return searchModel;
         

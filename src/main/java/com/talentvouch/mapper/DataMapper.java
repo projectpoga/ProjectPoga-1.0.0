@@ -42,5 +42,7 @@ public interface DataMapper {
     
     public List<JobsCount> getJobCountByLocation();
     
+    public List<JobsCount> getJobCountByJobTitle();
+    
     
 }

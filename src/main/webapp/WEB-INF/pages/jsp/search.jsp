@@ -224,6 +224,14 @@
 												</div>
 												<div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
 													<div class="panel-body">
+                                                                                                            <c:forEach var="jobsCountByJobTitle" items="${jobsCountByJobTitleList}">
+                                                                                                            <div class="checkbox">
+															<label>
+																<input type="checkbox"> ${jobsCountByJobTitle.label} <span class="badge">${jobsCountByJobTitle.jobsCount}</span>
+															</label>
+														</div>
+                                                                                                            </c:forEach>
+                                                                                                            <!-- static values
 														<div class="checkbox">
 															<label>
 																<input type="checkbox"> Software Developer <span class="badge">57</span>
@@ -269,9 +277,12 @@
 																<input type="checkbox"> System Security <span class="badge">4</span>
 															</label>
 														</div>
+                                                                                                            
+                                                                                                            -->
 													</div>
 												</div>
 											</div>
+                                                                                    <!--
 											<div class="panel panel-default" id="func-area">
 												<div class="panel-heading" role="tab" id="heading3">
 													<a class="collapsed toggle-link" data-toggle="collapse" data-parent="#refine-accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
@@ -349,7 +360,7 @@
 														</div>
 													</div>
 												</div>
-											</div>
+											</div>  -->
 											<div class="panel panel-default" id="industry">
 												<div class="panel-heading" role="tab" id="heading4">
 													<a class="collapsed toggle-link" data-toggle="collapse" data-parent="#refine-accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
@@ -360,6 +371,15 @@
 												</div>
 												<div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
 													<div class="panel-body">
+                                                                                                            <c:forEach var="categoryList" items="${categoryModelList}">
+                                                                                                                <div class="checkbox">
+															<label>
+																<input type="checkbox"> ${categoryList.categoryName} <span class="badge">${categoryList.jobsCount}</span>
+															</label>
+														</div>
+                                                                                                            </c:forEach>
+                                                                                                            
+                                                                                                            <!-- static values
 														<div class="checkbox">
 															<label>
 																<input type="checkbox"> IT-Software / Software Services <span class="badge">81</span>
@@ -385,6 +405,7 @@
 																<input type="checkbox"> IT-Hardware & Networking <span class="badge">2</span>
 															</label>
 														</div>
+                                                                                                            -->
 													</div>
 												</div>
 											</div>

@@ -90,6 +90,11 @@ public class DataAccessMgrDAOImpl implements DataAccessMgrDAO{
         return getDataMapper().getJobCountByLocation();
     }
 
+    @Override
+    public List<JobsCount> getJobCountByJobTitle() {
+        return getDataMapper().getJobCountByJobTitle();
+    }
+
 
     
     

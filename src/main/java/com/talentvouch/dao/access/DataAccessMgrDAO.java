@@ -42,4 +42,6 @@ public interface DataAccessMgrDAO {
     
     public List<JobsCount> getJobCountByLocation();
     
+    public List<JobsCount> getJobCountByJobTitle();
+    
 }
