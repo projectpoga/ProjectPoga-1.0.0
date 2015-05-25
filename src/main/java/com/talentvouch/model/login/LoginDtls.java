@@ -10,25 +10,24 @@ package com.talentvouch.model.login;
  * @author Ramana
  */
 public class LoginDtls {
-    String userName;
+    String email;
     String password;
 
     /**
      *
-     * @return userName
+     * @return email
      */
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 
     /**
      *
-     * @param userName
+     * @param email
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
     /**
      *
      * @return password

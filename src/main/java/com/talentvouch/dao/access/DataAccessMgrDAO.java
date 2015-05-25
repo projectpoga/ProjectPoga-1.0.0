@@ -35,4 +35,8 @@ public interface DataAccessMgrDAO {
     
     public List<RefinedJobDtlsVO> getRelevantJobs(SearchJobInputDtls searchJobInputDtls);
     
+    public Integer registerUser(LoginDtls loginDtls);
+    
+    public String getUserPwd(LoginDtls loginDtls);
+    
 }

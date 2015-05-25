@@ -74,6 +74,16 @@ public class DataAccessMgrDAOImpl implements DataAccessMgrDAO{
         return getDataMapper().getFresherJobs();
     }
 
+    @Override
+    public Integer registerUser(LoginDtls loginDtls) {
+        return getDataMapper().registerUser(loginDtls);
+    }
+
+    @Override
+    public String getUserPwd(LoginDtls loginDtls) {
+        return getDataMapper().getUserPwd(loginDtls);
+    }
+
 
     
     

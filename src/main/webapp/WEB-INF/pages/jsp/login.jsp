@@ -2,7 +2,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4" id="form-hold">
-						<form>
+						<form action="login.htm" method="post">
 							<div class="form-wrap animated fadeInDown">
 								<button type="button" id="sic">
 									<i class="fa fa-times"></i>
@@ -21,11 +21,11 @@
 								<h4 class="text-center">or</h4>
 								<div class="form-group">
 									<label class="label" for="exampleInputEmail1" id="userlabel">Email address</label>
-									<input type="email" class="form-control" id="InputEmail" placeholder="Enter email">
+                                                                        <input type="email" name="email" class="form-control" id="InputEmail" placeholder="Enter email">
 								</div>
 								<div class="form-group">
 									<label class="label" for="exampleInputPassword1" id="passlabel">Password</label>
-									<input type="password" class="form-control" id="InputPassword" placeholder="Password">
+                                                                        <input type="password" name="password" class="form-control" id="InputPassword" placeholder="Password">
 								</div>
 								<button type="submit" class="btn btn-block btn-default" id="sign-in">Sign In</button>
 							</div>

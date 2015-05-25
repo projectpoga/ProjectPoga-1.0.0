@@ -66,7 +66,7 @@
 									<a href="#">How it Works<span class="hover"></span></a>
 								</li>
 								<li>
-									<a href="jobs.php">Jobs<span class="hover"></span></a>
+									<a href="jobs.htm">Jobs<span class="hover"></span></a>
 								</li>
 								<li>
 									<a href="#SignIn" id="signin">Sign In<span class="hover"></span></a>

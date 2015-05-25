@@ -7,7 +7,6 @@ package com.talentvouch.controllers;
 
 
 import com.talentvouch.dao.access.DataAccessMgrDAOImpl;
-import com.talentvouch.model.login.LoginDtls;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,18 +27,7 @@ public class ViewForwardController{
 	public ViewForwardController(DataAccessMgrDAOImpl dataAccessMgrDAOImpl){
 		this.dataAccessMgrDAOImpl = dataAccessMgrDAOImpl;
 	}
-    
-    @RequestMapping("/login")
-    public ModelAndView login(LoginDtls loginDtls) throws Exception {
         
-       
-        logger.debug("*****Authenticating the user...");
-        System.out.println("Authenticating the user"+loginDtls.getUserName());
-     LoginDtls  loginDtls1 =  getDataAccessMgrDAOImpl().getLoginCredentials(loginDtls);
-     System.out.println("pwd:"+loginDtls1.getPassword());
-       return new ModelAndView("logi");
-        
-    }
     @RequestMapping("/index")
     public ModelAndView index() throws Exception {
         
@@ -69,6 +57,14 @@ public class ViewForwardController{
         jobModel.addObject("introRewardJobsList", getDataAccessMgrDAOImpl().getJobsWithIntroReward());
         
        return jobModel;
+        
+    }
+    
+    @RequestMapping("/register")
+    public ModelAndView register() throws Exception {
+        
+        
+       return new ModelAndView("register");
         
     }
   
