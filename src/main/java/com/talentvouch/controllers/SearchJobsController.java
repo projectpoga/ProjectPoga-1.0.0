@@ -37,9 +37,11 @@ public class SearchJobsController {
       
       
       ModelAndView searchModel = new ModelAndView("search");
+      
       //add category dtls list
       searchModel.addObject("categoryModelList", getDataAccessMgrDAOImpl().getCategoryDetails());
-      searchModel.addObject("refinedJobs",refinedJobsDtls);
+      searchModel.addObject("refinedJobs", refinedJobsDtls);
+      searchModel.addObject("jobsCountByLocList", getDataAccessMgrDAOImpl().getJobCountByLocation());
       
        return searchModel;
         

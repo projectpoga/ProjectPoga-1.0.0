@@ -172,7 +172,15 @@
 												</div>
 												<div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
 													<div class="panel-body">
-														<div class="checkbox">
+                                                                                                            <c:forEach var="jobsCountByLoc" items="${jobsCountByLocList}">
+                                                                                                            <div class="checkbox">
+															<label>
+																<input type="checkbox"> ${jobsCountByLoc.label} <span class="badge">${jobsCountByLoc.jobsCount}</span>
+															</label>
+														</div>
+                                                                                                            </c:forEach>
+														<!--    Static check box values
+                                                                                                                        <div class="checkbox">
 															<label>
 																<input type="checkbox"> Bengaluru <span class="badge">36</span>
 															</label>
@@ -202,6 +210,7 @@
 																<input type="checkbox"> Visakhapatnam <span class="badge">50</span>
 															</label>
 														</div>
+                                                                                                        -->
 													</div>
 												</div>
 											</div>

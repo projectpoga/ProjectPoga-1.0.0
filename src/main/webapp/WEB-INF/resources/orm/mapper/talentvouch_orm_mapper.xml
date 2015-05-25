@@ -124,4 +124,29 @@
       
   </resultMap>
   
+  <insert id="registerUser" parameterType="com.talentvouch.model.login.LoginDtls">
+      INSERT INTO TV_DATA.USERS (USERNAME, DISPLAYNAME, PASSWORD, USERROLE_ID, STATUS) VALUES
+             (#{email}, 'venkat', #{password}, (SELECT USERROLE_ID
+                                                 FROM TV_DATA.USERROLES WHERE USERROLE = 'user'), '1')
+  </insert>
+  
+  <select id="getUserPwd" parameterType="com.talentvouch.model.login.LoginDtls" resultType="String">
+      SELECT PASSWORD 
+      FROM TV_DATA.USERS
+      WHERE USERNAME = #{email}
+  </select>
+  
+  <select id="getJobCountByLocation" resultMap="jobCountByLocResultMap">
+      SELECT CITYNAME, COUNT(jobs.JOB_ID) as jobsCount
+      FROM TV_DATA.LOCATION location, TV_DATA.JOBS jobs
+      WHERE location.STATUS = '1' AND 
+            jobs.STATUS = '1' AND
+            jobs.LOCATION_ID = location.LOCATION_ID GROUP BY jobs.LOCATION_ID
+  </select>
+  
+  <resultMap id="jobCountByLocResultMap" type="com.talentvouch.model.search.JobsCount">
+      <result property="jobsCount" column="jobsCount"/>
+      <result property="label" column="CITYNAME"/> 
+  </resultMap>
+  
 </mapper>

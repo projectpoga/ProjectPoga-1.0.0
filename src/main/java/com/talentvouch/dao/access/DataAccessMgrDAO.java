@@ -6,6 +6,7 @@
 package com.talentvouch.dao.access;
 
 import com.talentvouch.model.login.LoginDtls;
+import com.talentvouch.model.search.JobsCount;
 import com.talentvouch.model.search.SearchJobInputDtls;
 import com.talentvouch.usebeans.CategoryVO;
 import com.talentvouch.usebeans.JobDtlsVO;
@@ -38,5 +39,7 @@ public interface DataAccessMgrDAO {
     public Integer registerUser(LoginDtls loginDtls);
     
     public String getUserPwd(LoginDtls loginDtls);
+    
+    public List<JobsCount> getJobCountByLocation();
     
 }

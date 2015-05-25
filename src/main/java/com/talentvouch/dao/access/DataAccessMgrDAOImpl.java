@@ -7,6 +7,7 @@ package com.talentvouch.dao.access;
 
 import com.talentvouch.mapper.DataMapper;
 import com.talentvouch.model.login.LoginDtls;
+import com.talentvouch.model.search.JobsCount;
 import com.talentvouch.model.search.SearchJobInputDtls;
 import com.talentvouch.usebeans.CategoryVO;
 import com.talentvouch.usebeans.JobDtlsVO;
@@ -82,6 +83,11 @@ public class DataAccessMgrDAOImpl implements DataAccessMgrDAO{
     @Override
     public String getUserPwd(LoginDtls loginDtls) {
         return getDataMapper().getUserPwd(loginDtls);
+    }
+
+    @Override
+    public List<JobsCount> getJobCountByLocation() {
+        return getDataMapper().getJobCountByLocation();
     }
 
 
