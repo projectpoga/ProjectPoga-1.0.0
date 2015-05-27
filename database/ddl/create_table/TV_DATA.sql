@@ -184,7 +184,7 @@ CREATE TABLE TV_DATA.JOBS (
     JOB_TITLE varchar(100)    NOT NULL ,
     SHORTDESC varchar(150)    NOT NULL ,
     LONGDESC varchar(256)    NOT NULL ,
-    SALARY decimal(8,2)    NOT NULL
+    SALARY decimal(8,2)    NOT NULL ,
     REFERAL_AMOUNT decimal(8,2)    NOT NULL ,
     INTRO_AMOUNT decimal(8,2)    NULL ,
     LOCATION_ID int    NOT NULL ,
