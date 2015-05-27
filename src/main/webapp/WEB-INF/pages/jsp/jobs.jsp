@@ -53,7 +53,8 @@
 			</div>
 		</div>
 		<button type="button" class="sb-toggle" id="sb-toggle" data-toggle="tooltip" data-placement="right" title="Categories">
-			<i class="fa fa-chevron-right"></i>
+			<!--<i class="fa fa-chevron-right"></i>-->
+                        <img class="img-responsive" src="<c:url value="/resources/includes/img/ctg.png"/>"/>
 		</button>
 		<div class="wrap sb-open">
 			<!-- Responsive Navbar -->
@@ -881,7 +882,7 @@
 	</body>
 	<!-- jQuery 1.11.2 Plugin -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<!--<script language="javascript" src="js/jquery-1.11.2.min.js"></script>-->
+        <!--<script language="javascript" src="js/jquery-1.11.2.min.js"></script>-->
 	<!-- Bootstrap.js -->
 	<script src="<c:url value="/resources/includes/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/includes/js/slick.min.js"/>"></script>
