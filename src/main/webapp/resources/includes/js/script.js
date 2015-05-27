@@ -34,6 +34,7 @@ $(function(){
 				},3000)
 				bool = 3;
 			}
+			event.stopPropagation();
 		})
 
 		setTimeout(function() {
@@ -52,6 +53,7 @@ $(function(){
 				$sb.removeClass('sb-active')
 				$page.removeClass('sb-open')
 			}
+			event.stopPropagation();
 		})
 		$sbtoggle.click(function(event){
 			/*if($sb.hasClass('sb-active') && $page.hasClass('sb-open')) {
@@ -64,6 +66,8 @@ $(function(){
 			$('#sb-toggle[data-toggle="tooltip"]').tooltip('hide')
 			$(this).css('z-index','999')
 			$sb.removeClass('hover')
+
+			event.stopPropagation();
 		})
 
 		$sbtoggle.hover(function(){

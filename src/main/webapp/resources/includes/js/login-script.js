@@ -28,12 +28,12 @@ $(function(){
 				$('body').css('overflow','hidden')
 			}
 			window.location.href.substr(0, window.location.href.indexOf('#'))
-			event.preventDefault();
+			event.stopPropagation();
 		})
 		$('#sic').click(function(){
 			$('#login').removeClass('active')
 			$('body').css('overflow','visible')
-			event.preventDefault();
+			event.stopPropagation();
 		})
 
 		$(document).click(function(event) {
