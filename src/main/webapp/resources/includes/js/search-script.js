@@ -93,7 +93,8 @@ $(function(){
 		$(document).click(function(event) {
 			var container = $refine
 			var control = $rrtoggle
-			if(!container.is(event.target) && !control.is(event.target) && container.has(event.target).length === 0) {
+                        var control1 = $('#form-hold')
+			if(!container.is(event.target) && !control.is(event.target) && !control1.is(event.target) && container.has(event.target).length === 0) {
 				$('body').css('overflow','visible')
 				$refine.removeClass('active')
 				$rrdull.removeClass('active')

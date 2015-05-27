@@ -20,7 +20,7 @@ $(function(){
 			$pl.removeClass('onfocus')
 		})
 
-		$('#signin').click(function(){
+		$('#signin').click(function(event){
 			if($('#login').hasClass('active')) {
 				$('#login').removeClass('active')
 			} else {
@@ -30,16 +30,15 @@ $(function(){
 			window.location.href.substr(0, window.location.href.indexOf('#'))
 			event.stopPropagation();
 		})
-		$('#sic').click(function(){
+		$('#sic').click(function(event){
 			$('#login').removeClass('active')
 			$('body').css('overflow','visible')
 			event.stopPropagation();
 		})
 
-		$(document).click(function(event) {
+		$('#login').click(function(event) {
 			var container = $('#form-hold')
-			var control = $('.navbar-nav li a')
-			if(!container.is(event.target) && !control.is(event.target) && container.has(event.target).length === 0) {
+                        if(!container.is(event.target) && container.has(event.target).length === 0) {
 				$('body').css('overflow','visible')
 				$('#login').removeClass('active')
 			}
