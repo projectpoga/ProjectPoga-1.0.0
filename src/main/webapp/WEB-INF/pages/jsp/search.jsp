@@ -130,7 +130,7 @@
                                     <a href="jobs.htm">Jobs</a>
                                 </li>
                                 <li>
-                                    <a href="#SignIn" id="signin">Sign In</a>
+                                    <a href="#signin" id="signin">Sign In</a>
                                 </li>
                                 <li>
                                     <a href="#" id="employers-zone">Employers</a>
@@ -515,8 +515,8 @@
 
     </body>
     <script src="<c:url value="/resources/includes/js/script.js"/>"></script>
-    <script src="<c:url value="/resources/includes/js/search-script.js"/>"></script>
     <script src="<c:url value="/resources/includes/js/login-script.js"/>"></script>
+    <script src="<c:url value="/resources/includes/js/search-script.js"/>"></script>
     <script>
         $("#vouch-range-slider").slider({ step: 1, min: 0, max: 10000, value: [0, 10000], focus: true, tooltip: 'hide' });
         $("#vouch-range-slider").on("slide", function(slideEvt) {
