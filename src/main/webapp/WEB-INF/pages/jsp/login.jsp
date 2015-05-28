@@ -2,7 +2,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4" id="form-hold">
-						<form action="login.htm" method="post">
+						<form action="login.htm" method="post" name="loginForm">
 							<div class="form-wrap animated fadeInDown">
 								<button type="button" id="sic">
 									<i class="fa fa-times"></i>
@@ -27,12 +27,46 @@
 									<label class="label" for="exampleInputPassword1" id="passlabel">Password</label>
                                                                         <input type="password" name="password" class="form-control" id="InputPassword" placeholder="Password">
 								</div>
-								<button type="submit" class="btn btn-block btn-default" id="sign-in">Sign In</button>
+                                                                <div id="loginError"></div>
+								 <input type="button" value="Sign In" class="btn btn-block btn-default" id="sign-in" onclick="doAjaxPost();"/>
 							</div>
 						</form>
+                                            
 						<p class="text-center" id="fp"><a href="#">Forgot password?</a></p>
 						<p id="sup" class="text-center"><a class="btn btn-danger" href="#">Sign Up</a>&nbsp;&nbsp;now and Earn Rewards.</p>
 					</div>
 				</div>
 			</div>
 		</div>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        function doAjaxPost() {
+
+            var email = document.loginForm.email.value;
+            var password = document.loginForm.password.value;
+            var data = 'email=' + encodeURIComponent(email)
+                                + '&password='
+                                + encodeURIComponent(password);
+                        
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: "login.htm",
+                success: function (response) {
+                    
+                     if(response != null && response === "success")
+                         window.location.replace("loginIndex.htm");
+                     else
+                        $("#loginError").html("Authentication failed Please try again");
+                   
+                },
+               error: function(e){
+                        alert("Error while handling the request"+e);
+            
+                }
+                
+
+            });
+
+        }
+    </script>

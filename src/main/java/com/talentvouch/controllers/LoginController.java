@@ -13,7 +13,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -22,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
     
-    private static final Logger logger = LogManager.getLogger(ViewForwardController.class);
+    private static final Logger logger = LogManager.getLogger(LoginController.class);
     public  DataAccessMgrDAOImpl dataAccessMgrDAOImpl;
     
     @Autowired
@@ -30,25 +32,36 @@ public class LoginController {
         this.dataAccessMgrDAOImpl = dataAccessMgrDAOImpl;
     }
     
-    @RequestMapping("/login")
-    public ModelAndView login(LoginDtls loginDtls){
+    @RequestMapping(value="/login", method=RequestMethod.POST)
+    @ResponseBody
+    public String login(@RequestParam("email") String email,@RequestParam("password") String password){
         
-        ModelAndView loginModel = new ModelAndView("index");
-        System.err.println("Login***********"+loginDtls.getEmail());
-        System.out.println("User authentication :"+AuthenticateUser(loginDtls));
-        return loginModel;
+        logger.debug("Authenticating the user :"+email);
+        System.err.println("Login***********"+email);
+        LoginDtls loginDtls = new LoginDtls();
+        loginDtls.setEmail(email);
+        loginDtls.setPassword(password);
+       
+        if(isAuthenticatedUser(loginDtls)){
+            logger.debug("User authentication is success, redirecting to the index page");
+             return "success";
+                 
+        }
         
+        logger.debug("User authentication is failed");
+        return "fail";
+    
     }
 
-    private boolean AuthenticateUser(LoginDtls loginDtls) {
+    private boolean isAuthenticatedUser(LoginDtls loginDtls) {
         String userPwd = loginDtls.getPassword();
         String storedPwd = getDataAccessMgrDAOImpl().getUserPwd(loginDtls);
         
-        
-        if(BCrypt.checkpw(userPwd, storedPwd))
+        if(null != storedPwd){
+            if(BCrypt.checkpw(userPwd, storedPwd))
             return true;
-        else 
-            return false;
+        }
+         return false;
         
     }
 

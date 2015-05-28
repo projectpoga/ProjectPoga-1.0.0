@@ -30,8 +30,15 @@ public class ViewForwardController{
         
     @RequestMapping("/index")
     public ModelAndView index() throws Exception {
+       
+       return new ModelAndView("index");
         
+    }
+    
+    @RequestMapping("/loginIndex")
+    public ModelAndView loginIndex() throws Exception {
         
+       //create session if not exist
        return new ModelAndView("index");
         
     }
@@ -76,5 +83,6 @@ public class ViewForwardController{
     public void setDataAccessMgrDAOImpl(DataAccessMgrDAOImpl dataAccessMgrDAOImpl) {
         this.dataAccessMgrDAOImpl = dataAccessMgrDAOImpl;
     }
+  
     
 }
