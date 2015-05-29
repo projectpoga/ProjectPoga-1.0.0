@@ -13,6 +13,16 @@ public class JobsCount {
     
     private int jobsCount;
     private String label;
+    private String labelId;
+
+    public String getLabelId() {
+        return labelId;
+    }
+
+    public void setLabelId(String labelId) {
+        this.labelId = labelId;
+    }
+    
 
     public int getJobsCount() {
         return jobsCount;

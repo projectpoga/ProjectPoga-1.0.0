@@ -1,10 +1,9 @@
 <!doctype html>
 <%@include file="/WEB-INF/pages/jspf/envsetup.jspf"%>
-<%@page import="org.ocpsoft.prettytime.PrettyTime, java.util.Date,java.text.SimpleDateFormat,java.text.ParseException"%> 
 
 <html lang="en">
     <head>
-	
+
         <!-- title -->
         <title>Refers | Refer Jobs Earn Rewards - Apply jobs | Job Referal Portal</title>
 
@@ -17,7 +16,7 @@
         <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,600' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
-        
+
         <!-- Favicon -->
 
         <!-- Bootstrap CSS-->
@@ -45,28 +44,59 @@
         <script src="<c:url value="/resources/includes/js/bootstrap.min.js"/>"></script>
         <script src="<c:url value="/resources/includes/bsselect/js/bootstrap-select.min.js"/>"></script>
         <script src="<c:url value="/resources/includes/slider/bootstrap-slider.min.js"/>"></script>
+        <script lang="javascript" type="text/javascript">
+            function ajaxRoleFacet()
+            {
+                var labels = ["locationFacet","roleFacet","industryFacet"];
+                var query = "";
+                //loop for each facet
+                for(var facetIndex = 0; facetIndex < labels.length; facetIndex++){
+                    
+                var cboxes = document.getElementsByName(labels[facetIndex]);
+                var len = cboxes.length;
+                var rolesLabel = '';
+                for (var i = 0; i < len; i++) {
+                    if (cboxes[i].checked)
+                        rolesLabel = rolesLabel + "'" + cboxes[i].value + "'"  +",";
+                }
+                rolesLabel = rolesLabel.substr(0,(rolesLabel.length-1));
+                query = query + rolesLabel + "-";
+                }
+                var data = "query=" + encodeURIComponent(query);
+                alert(data);
+                $.ajax({
+                    type: "GET",
+                    data: data,
+                    url: "searchByFacets.htm",
+                    success: function (response) {
+                        $("#searchResultsDiv").html(response);
+                    }
+
+                });
+            }
+        </script>
     </head>
     <body>
 
-	<!-- Categories Side Bar -->
-	<div class="sidebar sb-active" id="category-section">
+        <!-- Categories Side Bar -->
+        <div class="sidebar sb-active" id="category-section">
             <div id="ctg-heading">
-		<h3 id="category-title"><a href="javascript:void(0);" id="hide-sidebar" title="hide"><i class="fa fa-arrow-circle-left"></i></a>&nbsp;Categories</h3>
+                <h3 id="category-title"><a href="javascript:void(0);" id="hide-sidebar" title="hide"><i class="fa fa-arrow-circle-left"></i></a>&nbsp;Categories</h3>
             </div>
             <div class="category-body reached-bottom" id="category-body">
-		<div id="ctg-list-body">
+                <div id="ctg-list-body">
                     <ul class="nav nav-pills nav-stacked" id="category-list">
                         <c:forEach var="categoryList" items="${categoryModelList}">
                             <li><a href="#">${categoryList.categoryName} <span class="badge">${categoryList.jobsCount}</span></a><input type="hidden" name="<c:out value="${fn:trim(categoryList.categoryName)}" />" id="${categoryList.categoryId}" value="${categoryList.categoryId}"/></li>
-			</c:forEach>
+                                </c:forEach>
                     </ul>
-		</div>
+                </div>
             </div>
-	</div>
-	<button type="button" class="sb-toggle" id="sb-toggle" data-toggle="tooltip" data-placement="right" title="Categories">
+        </div>
+        <button type="button" class="sb-toggle" id="sb-toggle" data-toggle="tooltip" data-placement="right" title="Categories">
             <!--<i class="fa fa-chevron-right"></i>-->
             <img class="img-responsive" src="<c:url value="/resources/includes/img/ctg.png" />"/>
-	</button>
+        </button>
         <div class="login" id="login">
             <div class="container">
                 <div class="row">
@@ -105,19 +135,19 @@
                 </div>
             </div>
         </div>
-	<div class="wrap sb-open">
+        <div class="wrap sb-open">
             <!-- Responsive Navbar -->
             <div class="navholder">
-		<nav class="navbar navbar-default navbar-fixed-top">
+                <nav class="navbar navbar-default navbar-fixed-top">
                     <div class="container">
-			<div class="navbar-header">
+                        <div class="navbar-header">
                             <a class="navbar-brand" href="#">TalentVouch<small class="hidden-xs hidden-sm">.com</small><sup>Beta</sup></a>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-home">
                                 <span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>	
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>	
                             </button>
-			</div>
+                        </div>
                         <div class="collapse navbar-collapse" id="navbar-home">
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
@@ -149,31 +179,31 @@
                     <div class="panel panel-default panel-body" id="plain-search-body">	
                         <form class="form-inline" action="search.htm" method="post">
                             <div class="row" id="search-form-body">
-                            <div class="col-sm-12 col-md-6 col">
-                                <div class="row">
-                                    <div class="form-group col-sm-6 col-md-6">
-                                        <label class="sr-only" for="skills-desg">Skills</label>
-                                        <input type="text" name="jobTitle" class="form-control" id="skills-desg" placeholder="Skills, Designation, Companies">
-                                    </div>
-                                    <div class="form-group col-sm-6 col-md-6">
-                                        <label class="sr-only" for="location">Preferred Location</label>
-                                        <input type="text" name="location" class="form-control" id="location" placeholder="Location">
+                                <div class="col-sm-12 col-md-6 col">
+                                    <div class="row">
+                                        <div class="form-group col-sm-6 col-md-6">
+                                            <label class="sr-only" for="skills-desg">Skills</label>
+                                            <input type="text" name="jobTitle" class="form-control" id="skills-desg" placeholder="Skills, Designation, Companies">
+                                        </div>
+                                        <div class="form-group col-sm-6 col-md-6">
+                                            <label class="sr-only" for="location">Preferred Location</label>
+                                            <input type="text" name="location" class="form-control" id="location" placeholder="Location">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col">
-                                <div class="row">
-                                    <div class="form-group col-sm-5 col-md-5">
-                                        <label class="sr-only" for="location">Experience</label>
-                                        <input type="text" name="experience" class="form-control" id="location" placeholder="Experience">
-                                    </div>
-                                    <div class="form-group col-sm-5 col-md-5">
-                                        <label class="sr-only" for="location">Salary</label>
-                                        <input type="text" name="salary" class="form-control" id="location" placeholder="Salary">
-                                    </div>
-                                    <div class="form-group col-sm-2 col-md-2">
-                                        <button type="submit" class="btn btn-default" id="plain-search-btn"><i class="fa fa-search"></i></button>
-                                    </div>
+                                <div class="col-sm-12 col-md-6 col">
+                                    <div class="row">
+                                        <div class="form-group col-sm-5 col-md-5">
+                                            <label class="sr-only" for="location">Experience</label>
+                                            <input type="text" name="experience" class="form-control" id="location" placeholder="Experience">
+                                        </div>
+                                        <div class="form-group col-sm-5 col-md-5">
+                                            <label class="sr-only" for="location">Salary</label>
+                                            <input type="text" name="salary" class="form-control" id="location" placeholder="Salary">
+                                        </div>
+                                        <div class="form-group col-sm-2 col-md-2">
+                                            <button type="submit" class="btn btn-default" id="plain-search-btn"><i class="fa fa-search"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +244,7 @@
                                                         <c:forEach var="jobsCountByLoc" items="${jobsCountByLocList}">
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox"> ${jobsCountByLoc.label} <span class="badge">${jobsCountByLoc.jobsCount}</span>
+                                                                    <input type="checkbox" value="<c:out value="${jobsCountByLoc.labelId}"/>" onchange="ajaxRoleFacet()" name="locationFacet"> ${jobsCountByLoc.label} <span class="badge">${jobsCountByLoc.jobsCount}</span>
                                                                 </label>
                                                             </div>
                                                         </c:forEach>
@@ -249,7 +279,7 @@
                                                                         <input type="checkbox"> Visakhapatnam <span class="badge">50</span>
                                                                 </label>
                                                         </div>
-                                                -->
+                                                        -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -264,7 +294,7 @@
                                                         <c:forEach var="jobsCountByJobTitle" items="${jobsCountByJobTitleList}">
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox"> ${jobsCountByJobTitle.label} <span class="badge">${jobsCountByJobTitle.jobsCount}</span>
+                                                                    <input type="checkbox" value="<c:out value="${jobsCountByJobTitle.label}"/>" onchange="ajaxRoleFacet()" name="roleFacet"> ${jobsCountByJobTitle.label} <span class="badge">${jobsCountByJobTitle.jobsCount}</span>
                                                                 </label>
                                                             </div>
                                                         </c:forEach>
@@ -282,7 +312,7 @@
                                                         <c:forEach var="categoryList" items="${categoryModelList}">
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox"> ${categoryList.categoryName} <span class="badge">${categoryList.jobsCount}</span>
+                                                                    <input type="checkbox" value="<c:out value="${categoryList.categoryId}"/>" onchange="ajaxRoleFacet()" name="industryFacet"> ${categoryList.categoryName} <span class="badge">${categoryList.jobsCount}</span>
                                                                 </label>
                                                             </div>
                                                         </c:forEach>
@@ -339,15 +369,7 @@
                             </div>
                         </div>
 
-                        <%!
-                            //This method converts the time stamp to days ago ex:30 min ago, 1 day ago
-                            String convertTimeStamp(String timeStamp) throws ParseException {
-                                PrettyTime p = new PrettyTime();
-                                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-                             Date past = format.parse(timeStamp);
-                             return p.format(past);
-                            } 
-                        %>
+                        <!-- Deleted convert time scriplet -->
                         <div class="col-sm-8 col-md-7 col-lg-7 col-skew" id="query-jobs-list">
                             <div class="panel panel-default vl" id="vl1">
                                 <div class="panel-body">
@@ -374,60 +396,12 @@
                                         </div>
                                     </div>
                                 </div>
-							</div>
-                            <c:forEach var="jobDtlsObj" items="${refinedJobs}">
-                                <div class="panel panel-default job-post-container">
-                                    <div class="panel-body job-post-body">
-                                        <div class="job-post-wrap">
-                                            <div class="row">
-                                                <div class="col-xs-4 col-sm-3 col-md-2 post-clogo">
-                                                    <a href="#"><img src="<c:url value="/resources/includes/img/company_logo.jpg"/>" class="img-responsive"></a>
-                                                </div>
-                                                <div class="col-xs-8 col-sm-9 col-md-10 job-post-details">
-                                                    <div class="main-details">
-                                                        <h4 class="job-post-title"><a href="#">${jobDtlsObj.jobTitle}</a></h4>
-                                                        <p class="ct">${jobDtlsObj.compName}</p>
-                                                        <div class="row">
-                                                            <div class="exp-loc col-xs-8 col-sm-12 col-md-12">
-                                                                <span class="et"><i class="fa fa-briefcase"></i>&nbsp;${jobDtlsObj.experienceRequired} Yrs</span>
-                                                                <span class="et"><i class="fa fa-map-marker"></i>&nbsp;${jobDtlsObj.location}</span>
-                                                                <span class="et"><i class="fa fa-inr"></i>&nbsp;${jobDtlsObj.salary}&nbsp;p.a.</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="job-post-desc hidden-xs">
-                                                <div class="row">
-                                                    <div class="col-xs-3 col-sm-3 col-md-2 sh">Key Skills</div>
-                                                    <div class="col-xs-9 col-sm-9 col-md-10 sd">
-                                                            ${jobDtlsObj.skillsRequired}
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-3 col-sm-3 col-md-2 jdh">Description</div>
-                                                    <div class="col-xs-9 col-sm-9 col-md-10 jd">
-                                                            ${jobDtlsObj.jobDesc}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-footer ir">
-                                        <div class="row">
-                                            <div class="iv rv text-center col-xs-12 col-sm-6 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1"><i class="fa fa-star"></i> Referral Vouch&nbsp;<i class="fa fa-inr"></i>&nbsp;<b>20000</b></div>
-                                            <div class="iv text-center col-xs-6 col-sm-5 col-md-5 col-lg-4 hidden-xs">Intro Vouch&nbsp;<i class="fa fa-inr"></i>&nbsp;<b>2200</b></div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <div class="slr-pd">
-                                            <c:set var="postedDate" value="${jobDtlsObj.postedDate}"/>
-                                            <%String posted=convertTimeStamp(pageContext.getAttribute("postedDate").toString());%>
-                                            <span class="pd"><span class="post-by">Posted by, <a href="">${jobDtlsObj.employer}</a>,</span>&nbsp;<span class="post-date"><%=posted%>.</span></span>
-                                        </div>
-                                    </div>
-                                </div><!--End of div -->
-                            </c:forEach>
+                            </div>
+                            <div id="searchResultsDiv">
+
+                                <%@include file="/WEB-INF/pages/jsp/searchResults.jsp"%>
+                            </div>
+                            <!--Deleted div tag -->
                             <!--End of main div -->
                         </div>
                         <div class="col-sm-12 col-md-2 col-lg-2 col-skew" id="ad-section">
@@ -445,83 +419,83 @@
 
             <!-- Footer -->
             <footer>
-                    <div id="info-wrap">
-                            <div class="container">
-                                    <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-8">
-                                                    <div class="col-xs-12 col-sm-4 col-md-3">
-                                                            <img width="100px" height="100px" class="img-circle" src="">
-                                                    </div>
-                                                    <div class="col-xs-6 col-sm-4 col-md-3">
-                                                            <h4 class="ft-title">Information</h4>
-                                                            <p><a href="#">Our Story</a></p>
-                                                            <p><a href="#">How it Works?</a></p>
-                                                            <p><a href="#">Terms &amp; Conditions</a></p>
-                                                            <p><a href="#">Privacy Policy</a></p>
-                                                            <p><a href="#">Contact Us</a></p>
-                                                            <p><a href="#">FAQs</a></p>
-                                                            <p><a href="#">Report a bug</a></p>
-                                                    </div>
-                                                    <div class="col-xs-6 col-sm-4 col-md-3">
-                                                            <h4 class="ft-title">Job Seekers</h4>	
-                                                            <p><a href="#">How it Works?</a></p>
-                                                            <p><a href="#">Register Now</a></p>
-                                                            <p><a href="#">Sign In</a></p>
-                                                            <p><a href="#">Search Jobs</a></p>
-                                                            <p><a href="#">Help</a></p>
-                                                    </div>
-                                                    <div class="col-xs-6 col-sm-4 col-md-3">
-                                                            <h4 class="ft-title">Employers</h4>
-                                                            <p><a href="#">How it Works?</a></p>
-                                                            <p><a href="#">Sign Up</a></p>
-                                                            <p><a href="#">Sign In</a></p>
-                                                            <p><a href="#">Post a Job</a></p>
-                                                    </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-4">
-                                                    <div class="col-xs-6 col-sm-4 col-md-6">
-                                                            <h4 class="ft-title">Top Categories</h4>
-                                                            <p><a href="#">IT Software jobs</a></p>
-                                                            <p><a href="#">BPO jobs</a></p>
-                                                            <p><a href="#">Sales jobs</a></p>
-                                                            <p><a href="#">Finance jobs</a></p>
-                                                            <p><a href="#">Marketing jobs</a></p>
-                                                            <p><a href="#">Fresher jobs</a></p>
-                                                            <p><a href="#">Engineering jobs</a></p>
-                                                            <p><a href="#">HR Administration jobs</a></p>
-                                                            <p><a href="#">Govt jobs</a></p>
-                                                            <p><a href="#">Telecom jobs</a></p>
-                                                    </div>
-                                                    <div class="col-xs-6 col-sm-4 col-md-6">
-                                                            <h4 class="ft-title">Job Locations</h4>	
-                                                            <p><a href="#">Jobs in Delhi</a></p>
-                                                            <p><a href="#">Jobs in Pune</a></p>
-                                                            <p><a href="#">Jobs in Mumbai</a></p>
-                                                            <p><a href="#">Jobs in Kolkata</a></p>
-                                                            <p><a href="#">Jobs in Chennai</a></p>
-                                                            <p><a href="#">Jobs in Bangalore</a></p>
-                                                    </div>
-                                            </div>
-                                    </div>
+                <div id="info-wrap">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-8">
+                                <div class="col-xs-12 col-sm-4 col-md-3">
+                                    <img width="100px" height="100px" class="img-circle" src="">
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-md-3">
+                                    <h4 class="ft-title">Information</h4>
+                                    <p><a href="#">Our Story</a></p>
+                                    <p><a href="#">How it Works?</a></p>
+                                    <p><a href="#">Terms &amp; Conditions</a></p>
+                                    <p><a href="#">Privacy Policy</a></p>
+                                    <p><a href="#">Contact Us</a></p>
+                                    <p><a href="#">FAQs</a></p>
+                                    <p><a href="#">Report a bug</a></p>
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-md-3">
+                                    <h4 class="ft-title">Job Seekers</h4>	
+                                    <p><a href="#">How it Works?</a></p>
+                                    <p><a href="#">Register Now</a></p>
+                                    <p><a href="#">Sign In</a></p>
+                                    <p><a href="#">Search Jobs</a></p>
+                                    <p><a href="#">Help</a></p>
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-md-3">
+                                    <h4 class="ft-title">Employers</h4>
+                                    <p><a href="#">How it Works?</a></p>
+                                    <p><a href="#">Sign Up</a></p>
+                                    <p><a href="#">Sign In</a></p>
+                                    <p><a href="#">Post a Job</a></p>
+                                </div>
                             </div>
-                    </div>
-                    <div id="reserved">
-                            <div class="container">
-                                    <p class="text-center">All rights Reserved &copy; 2015 <a href="#">TalentVouch.com</a></p>
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                                <div class="col-xs-6 col-sm-4 col-md-6">
+                                    <h4 class="ft-title">Top Categories</h4>
+                                    <p><a href="#">IT Software jobs</a></p>
+                                    <p><a href="#">BPO jobs</a></p>
+                                    <p><a href="#">Sales jobs</a></p>
+                                    <p><a href="#">Finance jobs</a></p>
+                                    <p><a href="#">Marketing jobs</a></p>
+                                    <p><a href="#">Fresher jobs</a></p>
+                                    <p><a href="#">Engineering jobs</a></p>
+                                    <p><a href="#">HR Administration jobs</a></p>
+                                    <p><a href="#">Govt jobs</a></p>
+                                    <p><a href="#">Telecom jobs</a></p>
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-md-6">
+                                    <h4 class="ft-title">Job Locations</h4>	
+                                    <p><a href="#">Jobs in Delhi</a></p>
+                                    <p><a href="#">Jobs in Pune</a></p>
+                                    <p><a href="#">Jobs in Mumbai</a></p>
+                                    <p><a href="#">Jobs in Kolkata</a></p>
+                                    <p><a href="#">Jobs in Chennai</a></p>
+                                    <p><a href="#">Jobs in Bangalore</a></p>
+                                </div>
                             </div>
+                        </div>
                     </div>
+                </div>
+                <div id="reserved">
+                    <div class="container">
+                        <p class="text-center">All rights Reserved &copy; 2015 <a href="#">TalentVouch.com</a></p>
+                    </div>
+                </div>
             </footer>
-    </div>
+        </div>
 
     </body>
     <script src="<c:url value="/resources/includes/js/script.js"/>"></script>
     <script src="<c:url value="/resources/includes/js/login-script.js"/>"></script>
     <script src="<c:url value="/resources/includes/js/search-script.js"/>"></script>
     <script>
-        $("#vouch-range-slider").slider({ step: 1, min: 0, max: 10000, value: [0, 10000], focus: true, tooltip: 'hide' });
-        $("#vouch-range-slider").on("slide", function(slideEvt) {
-            $("#vr-val1").text(slideEvt.value[0]);
-            $("#vr-val2").text(slideEvt.value[1]);
-        });
+                                                                        $("#vouch-range-slider").slider({step: 1, min: 0, max: 10000, value: [0, 10000], focus: true, tooltip: 'hide'});
+                                                                        $("#vouch-range-slider").on("slide", function (slideEvt) {
+                                                                            $("#vr-val1").text(slideEvt.value[0]);
+                                                                            $("#vr-val2").text(slideEvt.value[1]);
+                                                                        });
     </script>
 </html>

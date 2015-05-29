@@ -137,7 +137,7 @@
   </select>
   
   <select id="getJobCountByLocation" resultMap="jobCountResultMap">
-      SELECT CITYNAME as label, COUNT(jobs.JOB_ID) as jobsCount
+      SELECT location.CITYNAME as label, COUNT(jobs.JOB_ID) as jobsCount, location.LOCATION_ID as id
       FROM TV_DATA.LOCATION location, TV_DATA.JOBS jobs
       WHERE location.STATUS = '1' AND 
             jobs.STATUS = '1' AND
@@ -145,7 +145,7 @@
   </select>
   
   <select id="getJobCountByJobTitle" resultMap="jobCountResultMap">
-      SELECT jobs.JOB_TITLE as label, COUNT(jobs.JOB_ID) as jobsCount
+      SELECT jobs.JOB_TITLE as label, COUNT(jobs.JOB_ID) as jobsCount, jobs.JOB_ID as id
       FROM TV_DATA.LOCATION location, TV_DATA.JOBS jobs
       WHERE location.STATUS = '1' AND 
             jobs.STATUS = '1' AND
@@ -156,6 +156,7 @@
   <resultMap id="jobCountResultMap" type="com.talentvouch.model.search.JobsCount">
       <result property="jobsCount" column="jobsCount"/>
       <result property="label" column="label"/> 
+      <result property="labelId" column="id"/> 
   </resultMap>
   
 </mapper>
