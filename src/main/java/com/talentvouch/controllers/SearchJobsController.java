@@ -6,6 +6,7 @@
 package com.talentvouch.controllers;
 
 import com.talentvouch.dao.access.DataAccessMgrDAOImpl;
+import com.talentvouch.model.search.SearchJobFacetDtls;
 import com.talentvouch.model.search.SearchJobInputDtls;
 import com.talentvouch.usebeans.RefinedJobDtlsVO;
 import java.util.ArrayList;
@@ -56,21 +57,29 @@ public class SearchJobsController {
      //List<RefinedJobDtlsVO> refinedJobsDtls =  getDataAccessMgrDAOImpl().getRelevantJobs(searchJobInputDtls);
       
         System.out.println("Query: "+query);
+        String queries[] = query.split("-");
+        int index = 0;
+        int queriesLen = queries.length;
+        String locatoinIds = "";
+        String roles = "";
+        String categoryIds = "";
+        
+        locatoinIds = queries[index];
+        if(index+1 < queriesLen)
+            roles =  queries[++index];
+        if(index+1 < queriesLen)
+            categoryIds = queries[++index];
+         
+//         set the queries into the object 
+         SearchJobFacetDtls facetDtls = new SearchJobFacetDtls();
+         facetDtls.setLocationIds(locatoinIds);
+         facetDtls.setJobTitles(roles);
+         facetDtls.setCategoryIDs(categoryIds);
+         
       ModelAndView searchModel = new ModelAndView("searchResults");
-      List<RefinedJobDtlsVO> refinedJobsDtls = new ArrayList<RefinedJobDtlsVO>();
-     RefinedJobDtlsVO ref = new RefinedJobDtlsVO();
-      ref.setCompName("comp name");
-      ref.setEmployer("emp");
-      ref.setExperienceRequired("1");
-     ref.setJobDesc("desc");
-     ref.setLocation("vsp");
-     ref.setSalary("111111");
+    
       
-      ref.setSkillsRequired("java");
-      ref.setPostedDate("2015-05-15 18:05:40.000");
-      refinedJobsDtls.add(ref);
-      
-      searchModel.addObject("refinedJobs", refinedJobsDtls);
+      searchModel.addObject("refinedJobs", getDataAccessMgrDAOImpl().getRelevantJobsByfacets(facetDtls));
       
        return searchModel;
         

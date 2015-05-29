@@ -159,4 +159,27 @@
       <result property="labelId" column="id"/> 
   </resultMap>
   
+  <select id="getRelevantJobsByfacets" parameterType="com.talentvouch.model.search.SearchJobFacetDtls" resultMap="relevantJobsResultMap">
+      
+    SELECT jobs.JOB_TITLE, empDtls.COMPANY_NAME, jobs.SALARY, jobs.EXPERIENCEREQUIRED, location.CITYNAME, jobs.SKILLSREQUIRED, jobs.LONGDESC,
+            employer.EMP_DISPLAYNAME, jobs.CREATED_DATE
+    FROM TV_DATA.JOBS jobs, TV_DATA.EMPLOYER employer, TV_DATA.EMPLOYERDETAILS empDtls, TV_DATA.LOCATION location
+    WHERE 
+      <if test="locationIds != null and locationIds != ''">
+                location.LOCATION_ID IN (${locationIds}) AND
+            </if>
+            <if test="jobTitles != null and jobTitles != ''">
+                jobs.JOB_TITLE IN (${jobTitles}) AND
+            </if>
+            <if test="categoryIDs != null and categoryIDs != ''">
+                 jobs.CATEGORY_ID IN (${categoryIDs}) AND
+            </if>
+      
+            jobs.EMPLOYER_ID = employer.EMPLOYER_ID AND
+            employer.EMPLOYER_ID = empDtls.EMPLOYER_ID AND
+            location.LOCATION_ID = jobs.LOCATION_ID
+            
+
+  </select>
+  
 </mapper>

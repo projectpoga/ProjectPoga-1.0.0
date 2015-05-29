@@ -8,6 +8,7 @@ package com.talentvouch.dao.access;
 import com.talentvouch.mapper.DataMapper;
 import com.talentvouch.model.login.LoginDtls;
 import com.talentvouch.model.search.JobsCount;
+import com.talentvouch.model.search.SearchJobFacetDtls;
 import com.talentvouch.model.search.SearchJobInputDtls;
 import com.talentvouch.usebeans.CategoryVO;
 import com.talentvouch.usebeans.JobDtlsVO;
@@ -18,6 +19,7 @@ import java.util.List;
  *
  * @author Ramana
  */
+
 
 public class DataAccessMgrDAOImpl implements DataAccessMgrDAO{
     private DataMapper dataMapper;
@@ -93,6 +95,12 @@ public class DataAccessMgrDAOImpl implements DataAccessMgrDAO{
     @Override
     public List<JobsCount> getJobCountByJobTitle() {
         return getDataMapper().getJobCountByJobTitle();
+    }
+
+    @Override
+    public List<RefinedJobDtlsVO> getRelevantJobsByfacets(SearchJobFacetDtls SearchJobFacetDtls) {
+       
+        return getDataMapper().getRelevantJobsByfacets(SearchJobFacetDtls);
     }
 
 

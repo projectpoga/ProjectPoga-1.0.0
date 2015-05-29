@@ -7,6 +7,7 @@ package com.talentvouch.mapper;
 
 import com.talentvouch.model.login.LoginDtls;
 import com.talentvouch.model.search.JobsCount;
+import com.talentvouch.model.search.SearchJobFacetDtls;
 import com.talentvouch.model.search.SearchJobInputDtls;
 import com.talentvouch.usebeans.CategoryVO;
 import com.talentvouch.usebeans.JobDtlsVO;
@@ -43,6 +44,8 @@ public interface DataMapper {
     public List<JobsCount> getJobCountByLocation();
     
     public List<JobsCount> getJobCountByJobTitle();
+    
+    public List<RefinedJobDtlsVO> getRelevantJobsByfacets(SearchJobFacetDtls SearchJobFacetDtls);
     
     
 }
