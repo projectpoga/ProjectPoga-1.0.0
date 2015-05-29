@@ -53,9 +53,10 @@ public class SearchJobsController {
     
     @RequestMapping("/searchByFacets")
     public ModelAndView searchByFacets(@RequestParam("query") String query) throws Exception {
-        
+        ModelAndView searchModel = new ModelAndView("searchResults");
      //List<RefinedJobDtlsVO> refinedJobsDtls =  getDataAccessMgrDAOImpl().getRelevantJobs(searchJobInputDtls);
-      
+      try
+      {
         System.out.println("Query: "+query);
         String queries[] = query.split("-");
         int index = 0;
@@ -76,13 +77,19 @@ public class SearchJobsController {
          facetDtls.setJobTitles(roles);
          facetDtls.setCategoryIDs(categoryIds);
          
-      ModelAndView searchModel = new ModelAndView("searchResults");
+    //  ModelAndView searchModel = new ModelAndView("searchResults");
     
       
       searchModel.addObject("refinedJobs", getDataAccessMgrDAOImpl().getRelevantJobsByfacets(facetDtls));
       
-       return searchModel;
-        
+       
+      }
+      catch(ArrayIndexOutOfBoundsException ex)
+      {
+          ex.getMessage();
+          searchModel.addObject("refinedJobs",null);
+      }
+        return searchModel;
     }
 
     public DataAccessMgrDAOImpl getDataAccessMgrDAOImpl() {
