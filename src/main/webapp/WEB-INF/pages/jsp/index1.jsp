@@ -10,11 +10,35 @@
     </head>
 
     <body>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function doAjaxPost() {
+        
+        var userName = document.sampleForm.userName.value;
+        var password = document.sampleForm.password.value;
+        var data = 'userName='+ encodeURIComponent(userName)
+                               + '&amp;password='
+                               + encodeURIComponent(password);
+        alert(userName+":"+data);
+        $.ajax({
+            type: "GET",
+            data : data,
+            url:"subView.htm",
+            success: function(response) {
+                $("#subViewDiv").html( response );
+            }
+            
+        });
+       
+    }
+</script>
         <center><h1>LoginForm</h1>
-            <form method="post"action="login.htm" >
+            <form method="post"action="subView.htm" name="sampleForm">
     UserName<input type="text" name="userName"/><br> 
    Password :<input type="password" name="password"/><br>
-    <input type="submit" value="Login" />
+   <input type="button" value="GO!" onclick="doAjaxPost();" />
+   <div id="subViewDiv"></div>
+    <input type="submit" value="Login"/>
        </form>
            <%!
            //This method converts the time stamp to day ago ex:30 min ago, 1 day ago
