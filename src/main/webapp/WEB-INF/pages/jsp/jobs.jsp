@@ -101,7 +101,7 @@
 				<nav class="navbar navbar-default navbar-fixed-top">
 					<div class="container">
 						<div class="navbar-header">
-							<a class="navbar-brand" href="#">TalentVouch<small class="hidden-xs hidden-sm">.com</small></a>
+							<a class="navbar-brand" href="#">TalentVouch<small class="hidden-xs hidden-sm">.com</small><sup>Beta</sup></a>
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-home">
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
