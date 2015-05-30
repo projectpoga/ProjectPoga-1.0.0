@@ -63,9 +63,8 @@
                 query = query + rolesLabel + "-";
                 }
                 var data = "query=" + encodeURIComponent(query);
-                alert(data);
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     data: data,
                     url: "searchByFacets.htm",
                     success: function (response) {
