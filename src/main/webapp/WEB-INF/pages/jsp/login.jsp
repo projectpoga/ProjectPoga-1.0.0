@@ -28,7 +28,7 @@
                                                                         <input type="password" name="password" class="form-control" id="InputPassword" placeholder="Password">
 								</div>
                                                                 <div id="loginError"></div>
-								 <input type="button" value="Sign In" class="btn btn-block btn-default" id="sign-in" onclick="doAjaxPost();"/>
+								 <input type="button" value="Sign In" class="btn btn-block btn-default" id="sign-in"/>
 							</div>
 						</form>
                                             
@@ -38,8 +38,10 @@
 				</div>
 			</div>
 		</div>
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script type="text/javascript">
+        $('#sign-in').click(function(){
+            doAjaxPost();
+        })
         function doAjaxPost() {
 
             var email = document.loginForm.email.value;
