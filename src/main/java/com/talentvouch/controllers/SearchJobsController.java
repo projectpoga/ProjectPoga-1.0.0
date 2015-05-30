@@ -58,7 +58,7 @@ public class SearchJobsController {
       try
       {
         System.out.println("Query: "+query);
-        String queries[] = query.split("-");
+        String queries[] = query.split(";");
         int index = 0;
         int queriesLen = queries.length;
         String locatoinIds = "";
