@@ -60,7 +60,7 @@
                         rolesLabel = rolesLabel + "'" + cboxes[i].value + "'"  +",";
                 }
                 rolesLabel = rolesLabel.substr(0,(rolesLabel.length-1));
-                query = query + rolesLabel + "-";
+                query = query + rolesLabel + ";";
                 }
                 var data = "query=" + encodeURIComponent(query);
                 $.ajax({
