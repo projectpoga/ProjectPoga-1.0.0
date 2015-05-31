@@ -19,6 +19,8 @@
 
 		<!-- Bootstrap.min.css -->
 		<link href="<c:url value="/resources/includes/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
+                <link href="<c:url value="/resources/includes/bsselect/css/bootstrap-select.min.css"/>" rel="stylesheet" type="text/css">
+                <link href="<c:url value="/resources/includes/slider/css/bootstrap-slider.min.css"/>" rel="stylesheet" type="text/css">
 
 		<!-- Slick CSS -->
 		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/includes/css/slick.css"/>"/>
