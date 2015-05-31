@@ -159,7 +159,8 @@
 										<div class="form-group col-sm-5 col-md-5">
 											<label class="sr-only" for="location">Experience</label>
                                                                                         <select class="selectpicker show-tick" name="experience" data-style="btn-exp" id="experience">
-                                                                                            <option>0 Years</option>
+                                                                                            <option value="0">Experience</option>
+                                                                                            <option value="0">0</option>
                                                                                             <option>1</option>
                                                                                             <option>2</option>
                                                                                             <option>3</option>
@@ -937,9 +938,7 @@
 				</div>
 			</footer>
 		</div>
-
-	</body>
-	<!-- jQuery 1.11.2 Plugin -->
+            <!-- jQuery 1.11.2 Plugin -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <!--<script language="javascript" src="js/jquery-1.11.2.min.js"></script>-->
 	<!-- Bootstrap.js -->
@@ -950,4 +949,5 @@
 	<script type="text/javascript" src="<c:url value="/resources/includes/js/cscript.js"/>"></script>
         <script src="<c:url value="/resources/includes/js/login-script.js"/>"></script>
 	<script src="<c:url value="/resources/includes/js/script.js"/>"></script>
+	</body>
 </html>
