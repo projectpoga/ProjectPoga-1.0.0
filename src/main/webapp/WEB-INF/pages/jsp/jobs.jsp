@@ -944,6 +944,8 @@
         <!--<script language="javascript" src="js/jquery-1.11.2.min.js"></script>-->
 	<!-- Bootstrap.js -->
 	<script src="<c:url value="/resources/includes/js/bootstrap.min.js"/>"></script>
+        <script src="<c:url value="/resources/includes/bsselect/js/bootstrap-select.min.js"/>"></script>
+        <script src="<c:url value="/resources/includes/slider/bootstrap-slider.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/includes/js/slick.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/includes/js/cscript.js"/>"></script>
         <script src="<c:url value="/resources/includes/js/login-script.js"/>"></script>
