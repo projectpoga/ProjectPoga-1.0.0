@@ -84,6 +84,7 @@ a:focus, a:hover {
 .navbar {
 	margin-bottom: 0px;
 	font-family: 'Raleway',sans-serif;
+        height: 55px;
 }
 .navbar-default {
 	background-color: #fff;
