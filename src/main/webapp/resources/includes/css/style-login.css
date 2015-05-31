@@ -39,6 +39,9 @@ a:focus, a:hover {
 	display: block;
 }
 
+#form-hold {
+    padding-bottom: 25px;
+}
 
 #home-uri sup {
 	padding: 3px 5px;
