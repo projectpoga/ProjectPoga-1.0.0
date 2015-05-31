@@ -27,3 +27,6 @@
     background-color: #fff;
 }
 
+.bootstrap-select.open.dropup .dropdown-menu.inner {
+	max-height: 133px !important;
+}
