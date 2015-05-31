@@ -35,6 +35,7 @@
         <!-- style.css -->
         <link href="<c:url value="/resources/includes/css/style-purple.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/includes/css/style-login.css"/>" rel="stylesheet" type="text/css">
+        <link href="<c:url value="/resources/includes/css/logged.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/includes/css/style-searchbar.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/includes/css/style-search.css"/>" rel="stylesheet" type="text/css">
         <!-- jQuery 1.11.2 Plugin -->
@@ -48,20 +49,20 @@
         <script lang="javascript" type="text/javascript">
             function ajaxRoleFacet()
             {
-                var labels = ["locationFacet","roleFacet","industryFacet"];
+                var labels = ["locationFacet", "roleFacet", "industryFacet"];
                 var query = "";
                 //loop for each facet
-                for(var facetIndex = 0; facetIndex < labels.length; facetIndex++){
-                    
-                var cboxes = document.getElementsByName(labels[facetIndex]);
-                var len = cboxes.length;
-                var rolesLabel = '';
-                for (var i = 0; i < len; i++) {
-                    if (cboxes[i].checked)
-                        rolesLabel = rolesLabel + "'" + cboxes[i].value + "'"  +",";
-                }
-                rolesLabel = rolesLabel.substr(0,(rolesLabel.length-1));
-                query = query + rolesLabel + ";";
+                for (var facetIndex = 0; facetIndex < labels.length; facetIndex++) {
+
+                    var cboxes = document.getElementsByName(labels[facetIndex]);
+                    var len = cboxes.length;
+                    var rolesLabel = '';
+                    for (var i = 0; i < len; i++) {
+                        if (cboxes[i].checked)
+                            rolesLabel = rolesLabel + "'" + cboxes[i].value + "'" + ",";
+                    }
+                    rolesLabel = rolesLabel.substr(0, (rolesLabel.length - 1));
+                    query = query + rolesLabel + ";";
                 }
                 var data = "query=" + encodeURIComponent(query);
                 $.ajax({
@@ -138,38 +139,45 @@
         <div class="wrap sb-open">
             <!-- Responsive Navbar -->
             <div class="navholder">
-                <nav class="navbar navbar-default navbar-fixed-top">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#">TalentVouch<small class="hidden-xs hidden-sm">.com</small><sup>Beta</sup></a>
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-home">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>	
-                            </button>
-                        </div>
-                        <div class="collapse navbar-collapse" id="navbar-home">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="index.htm">Home</a>
-                                </li>
-                                <li>
-                                    <a href="#">How it Works</a>
-                                </li>
-                                <li class="active">
-                                    <a href="jobs.htm">Jobs</a>
-                                </li>
-                                <li>
-                                    <a href="#signin" id="signin">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="#" id="employers-zone">Employers</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav><!-- Responsive Navbar end -->
-            </div>
+				<nav class="navbar navbar-default navbar-fixed-top">
+					<div class="container">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#">TalentVouch<small class="hidden-xs hidden-sm">.com</small><sup>Beta</sup></a>
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-home">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>	
+							</button>
+                                                        <button type="button" class="navbar-toggle" id="refine-toggle">
+								<i class="fa fa-filter"></i>
+							</button>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.userName != null}">
+                                                                <button type="button" id="my-account">
+                                                                    <img src="<c:url value="/resources/includes/img/emp-icon.png"/>" width="30px" /></button>
+                                                            </c:when>
+                                                        </c:choose>
+						</div>
+						<div class="collapse navbar-collapse" id="navbar-home">
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a href="index.php">Home<span class="hover"></span></a>
+								</li>
+								<li>
+									<a href="#">How it Works<span class="hover"></span></a>
+								</li>
+								<li class="active">
+									<a href="jobs.php">Jobs<span class="hover"></span></a>
+								</li>
+								<%@include file="/WEB-INF/pages/jsp/logged.jsp" %>
+								<li>
+									<a href="#" id="employers-zone">Employers<span class="hover hidden-sm hidden-md hidden-lg"></span></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav><!-- Responsive Navbar end -->
+			</div>
 
             <div id="plain-search-form">
                 <div class="dullness"></div>
@@ -510,10 +518,10 @@
     <script src="<c:url value="/resources/includes/js/login-script.js"/>"></script>
     <script src="<c:url value="/resources/includes/js/search-script.js"/>"></script>
     <script>
-                                                                        $("#vouch-range-slider").slider({step: 1, min: 0, max: 10000, value: [0, 10000], focus: true, tooltip: 'hide'});
-                                                                        $("#vouch-range-slider").on("slide", function (slideEvt) {
-                                                                            $("#vr-val1").text(slideEvt.value[0]);
-                                                                            $("#vr-val2").text(slideEvt.value[1]);
-                                                                        });
+        $("#vouch-range-slider").slider({step: 1, min: 0, max: 10000, value: [0, 10000], focus: true, tooltip: 'hide'});
+        $("#vouch-range-slider").on("slide", function (slideEvt) {
+            $("#vr-val1").text(slideEvt.value[0]);
+            $("#vr-val2").text(slideEvt.value[1]);
+        });
     </script>
 </html>

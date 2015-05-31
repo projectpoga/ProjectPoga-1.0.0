@@ -34,8 +34,10 @@
 
 		<!-- style.css -->
                 <link href="<c:url value="/resources/includes/css/style-login.css"/>" rel="stylesheet" type="text/css" >
+                <link href="<c:url value="/resources/includes/css/logged.css"/>" rel="stylesheet" type="text/css" >
                 <link href="<c:url value="/resources/includes/css/style-searchbar.css"/>" rel="stylesheet" type="text/css" >
 		<link href="<c:url value="/resources/includes/css/style-purple.css"/>" rel="stylesheet" type="text/css" >
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	</head>
 	<body>
 
@@ -60,44 +62,7 @@
 			<!--<i class="fa fa-chevron-right"></i>-->
                         <img class="img-responsive" src="<c:url value="/resources/includes/img/ctg.png"/>"/>
 		</button>
-                <div class="login" id="login">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4" id="form-hold">
-                                <form>
-                                    <div class="form-wrap animated fadeInDown">
-                                        <button type="button" id="sic">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                        <div class="title-logo">
-                                            <h1 class="text-center"><a id="home-uri" href="#">TalentVouch<sup>Beta</sup></a></h1>
-                                        </div>
-                                        <div class="row">
-                                            <h4 class="text-center logh">Login via</h4>
-                                            <div class="login-via center-block">
-                                                <a class="btn btn-fa" href="#"><i class="fa fa-facebook"></i></a>
-                                                <a class="btn btn-li" href="#"><i class="fa fa-linkedin"></i></a>
-                                                <a class="btn btn-gp" href="#"><i class="fa fa-google-plus"></i></a>
-                                            </div>
-                                        </div>
-                                        <h4 class="text-center">or</h4>
-                                        <div class="form-group">
-                                            <label class="label" for="exampleInputEmail1" id="userlabel">Email address</label>
-                                            <input type="email" class="form-control" id="InputEmail" placeholder="Enter email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="label" for="exampleInputPassword1" id="passlabel">Password</label>
-                                            <input type="password" class="form-control" id="InputPassword" placeholder="Password">
-                                        </div>
-                                        <button type="submit" class="btn btn-block btn-default" id="sign-in">Sign In</button>
-                                    </div>
-                                </form>
-                                <p class="text-center" id="fp"><a href="#">Forgot password?</a></p>
-                                <p id="sup" class="text-center"><a class="btn btn-danger" href="#">Sign Up</a>&nbsp;&nbsp;now and Earn Rewards.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <%@include file="/WEB-INF/pages/jsp/login.jsp"%>
 		<div class="wrap sb-open">
 			<!-- Responsive Navbar -->
 			<div class="navholder">
@@ -110,23 +75,27 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>	
 							</button>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.userName != null}">
+                                                                <button type="button" id="my-account">
+                                                                    <img src="<c:url value="/resources/includes/img/emp-icon.png"/>" width="30px" /></button>
+                                                            </c:when>
+                                                        </c:choose>
 						</div>
 						<div class="collapse navbar-collapse" id="navbar-home">
 							<ul class="nav navbar-nav navbar-right">
 								<li>
-									<a href="index.htm">Home</a>
+									<a href="index.htm">Home<span class="hover"></span></a>
 								</li>
 								<li>
-									<a href="#">How it Works</a>
+									<a href="#">How it Works<span class="hover"></span></a>
 								</li>
 								<li class="active">
-									<a href="jobs.htm">Jobs</a>
+									<a href="jobs.htm">Jobs<span class="hover"></span></a>
 								</li>
+								<%@include file="/WEB-INF/pages/jsp/logged.jsp" %>
 								<li>
-									<a id="signin" href="#">Sign In</a>
-								</li>
-								<li>
-									<a href="#" id="employers-zone">Employers</a>
+									<a href="#" id="employers-zone">Employers<span class="hover hidden-sm hidden-md hidden-lg"></span></a>
 								</li>
 							</ul>
 						</div>
@@ -939,7 +908,6 @@
 			</footer>
 		</div>
             <!-- jQuery 1.11.2 Plugin -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <!--<script language="javascript" src="js/jquery-1.11.2.min.js"></script>-->
 	<!-- Bootstrap.js -->
 	<script src="<c:url value="/resources/includes/js/bootstrap.min.js"/>"></script>
