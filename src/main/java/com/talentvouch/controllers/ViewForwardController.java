@@ -7,6 +7,8 @@ package com.talentvouch.controllers;
 
 
 import com.talentvouch.dao.access.DataAccessMgrDAOImpl;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +38,35 @@ public class ViewForwardController{
     }
     
     @RequestMapping("/loginIndex")
-    public ModelAndView loginIndex() throws Exception {
+    public ModelAndView loginIndex(HttpServletRequest request) throws Exception {
         
-       //create session if not exist
-       return new ModelAndView("index");
+        //create session if not exist
+       HttpSession session=request.getSession();
+       session.setAttribute("userName", "Venkat");
+       ModelAndView  indexModel = new ModelAndView("index");
+        String sessionID = session.getId();
+        indexModel.addObject("sessionID", sessionID);
+        System.out.println("session============================"+sessionID+"is new seeion?:"+session.isNew());
+        
+        return indexModel; 
         
     }
+    
+    @RequestMapping("/logout")
+    public ModelAndView logout(HttpServletRequest request) throws Exception {
+        
+        HttpSession session = request.getSession(false);
+        if(session!=null)
+            session.invalidate();
+       ModelAndView  indexModel = new ModelAndView("index");
+        
+        System.out.println("Successfully logged out");
+        
+        return indexModel; 
+        
+    }
+    
+    
       @RequestMapping("/index1")
     public ModelAndView index1() throws Exception {
         
