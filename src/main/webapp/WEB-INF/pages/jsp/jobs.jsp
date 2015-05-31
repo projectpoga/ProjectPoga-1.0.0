@@ -32,6 +32,7 @@
 
 		<!-- style.css -->
                 <link href="<c:url value="/resources/includes/css/style-login.css"/>" rel="stylesheet" type="text/css" >
+                <link href="<c:url value="/resources/includes/css/style-searchbar.css"/>" rel="stylesheet" type="text/css" >
 		<link href="<c:url value="/resources/includes/css/style-purple.css"/>" rel="stylesheet" type="text/css" >
 	</head>
 	<body>
@@ -156,6 +157,24 @@
 										<div class="form-group col-sm-5 col-md-5">
 											<label class="sr-only" for="location">Experience</label>
 											<input type="text" name="experience" class="form-control" id="location" placeholder="Experience">
+                                                                                        <select class="selectpicker show-tick" name="experience" data-style="btn-exp" id="experience">
+                                                                                            <option>0 Years</option>
+                                                                                            <option>1</option>
+                                                                                            <option>2</option>
+                                                                                            <option>3</option>
+                                                                                            <option>4</option>
+                                                                                            <option>5</option>
+                                                                                            <option>6</option>
+                                                                                            <option>7</option>
+                                                                                            <option>8</option>
+                                                                                            <option>9</option>
+                                                                                            <option>10</option>
+                                                                                            <option>11</option>
+                                                                                            <option>12</option>
+                                                                                            <option>13</option>
+                                                                                            <option>14</option>
+                                                                                            <option>15</option>
+                                                                                        </select>
 										</div>
 										<div class="form-group col-sm-5 col-md-5">
 											<label class="sr-only" for="location">Salary</label>
