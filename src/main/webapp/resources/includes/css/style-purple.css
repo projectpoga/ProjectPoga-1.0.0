@@ -373,7 +373,7 @@ a:focus, a:hover {
 }
 #search-form-container {
 	position: relative;
-	z-index: 2;
+	z-index: 1000;
 }
 #intro-title {
 	margin: 25px 0px;
