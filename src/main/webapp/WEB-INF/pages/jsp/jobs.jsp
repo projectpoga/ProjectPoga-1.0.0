@@ -158,7 +158,6 @@
 									<div class="row">
 										<div class="form-group col-sm-5 col-md-5">
 											<label class="sr-only" for="location">Experience</label>
-											<input type="text" name="experience" class="form-control" id="location" placeholder="Experience">
                                                                                         <select class="selectpicker show-tick" name="experience" data-style="btn-exp" id="experience">
                                                                                             <option>0 Years</option>
                                                                                             <option>1</option>
