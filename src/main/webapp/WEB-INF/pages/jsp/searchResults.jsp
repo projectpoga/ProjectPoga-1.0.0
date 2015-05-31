@@ -59,8 +59,8 @@
                 </div>
                 <div class="panel-footer ir">
                     <div class="row">
-                        <div class="iv rv text-center col-xs-12 col-sm-6 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1"><i class="fa fa-star"></i> Referral Vouch&nbsp;<i class="fa fa-inr"></i>&nbsp;<b>20000</b></div>
-                        <div class="iv text-center col-xs-6 col-sm-5 col-md-5 col-lg-4 hidden-xs">Intro Vouch&nbsp;<i class="fa fa-inr"></i>&nbsp;<b>2200</b></div>
+                        <div class="iv rv text-center col-xs-12 col-sm-6 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1"><i class="fa fa-star"></i> Referral Vouch&nbsp;<i class="fa fa-inr"></i>&nbsp;<b>${jobDtlsObj.refAmount}</b></div>
+                        <div class="iv text-center col-xs-6 col-sm-5 col-md-5 col-lg-4 hidden-xs">Intro Vouch&nbsp;<i class="fa fa-inr"></i>&nbsp;<b>${jobDtlsObj.introAmount}</b></div>
                     </div>
                 </div>
                 <div class="panel-footer">

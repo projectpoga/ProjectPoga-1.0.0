@@ -20,6 +20,25 @@ public class RefinedJobDtlsVO {
     private String employer;
     private String postedDate;
     private String salary;
+    private String refAmount;
+    private String introAmount;
+
+    public String getRefAmount() {
+        return refAmount;
+    }
+
+    public void setRefAmount(String refAmount) {
+        this.refAmount = refAmount;
+    }
+
+    public String getIntroAmount() {
+        return introAmount;
+    }
+
+    public void setIntroAmount(String introAmount) {
+        this.introAmount = introAmount;
+    }
+    
 
     public String getSalary() {
         return salary;
