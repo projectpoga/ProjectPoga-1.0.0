@@ -187,7 +187,7 @@
 													<div class="row">
 														<div class="col-xs-6">
 															<div class="icon">
-																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
+                                                                                                                            <a href="#"><img class="img-responsive" src="<c:url value="/resources/includes/img/company_logo.jpg"/>" /></a>
 															</div>
 														</div>
 														<div class="col-xs-6">
@@ -271,7 +271,7 @@
 													<div class="row">
 														<div class="col-xs-6">
 															<div class="icon">
-																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
+																<a href="#"><img class="img-responsive" src="<c:url value="/resources/includes/img/company_logo.jpg"/>" /></a>
 															</div>
 														</div>
 														<div class="col-xs-6">
@@ -555,7 +555,7 @@
 													<div class="row">
 														<div class="col-xs-6">
 															<div class="icon">
-																<a href="#"><img class="img-responsive" src="includes/img/company_logo.jpg" /></a>
+																<a href="#"><img class="img-responsive" src="<c:url value="/resources/includes/img/company_logo.jpg"/>" /></a>
 															</div>
 														</div>
 														<div class="col-xs-6">
