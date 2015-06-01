@@ -4,8 +4,6 @@
             <a href="#" class="dropdown-toggle my-account" data-toggle="dropdown" role="button" aria-expanded="false"><img src="<c:url value="/resources/includes/img/emp-icon.png"/>" width="30px" /></a>
             <ul class="dropdown-menu" role="menu">
                 <li><a href="#">My Profile</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>
                 <li><a href="logout.htm"><i class="fa fa-power-off"></i>&nbsp;Log Out</a></li>
             </ul>
