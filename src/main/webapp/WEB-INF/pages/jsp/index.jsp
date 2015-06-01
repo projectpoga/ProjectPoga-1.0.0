@@ -77,7 +77,11 @@
 					</div>
 				</nav><!-- Responsive Navbar end -->
 		</div>
-		<%@include file="/WEB-INF/pages/jsp/login.jsp"%> 
+		<c:choose>
+                    <c:when test="${sessionScope.userName == null}">
+                        <%@include file="/WEB-INF/pages/jsp/login.jsp"%>
+                    </c:when>
+                </c:choose>
 		<div class="wrap sb-open">
 			<!-- Responsive Navbar -->
 			<div id="carousel-holder">

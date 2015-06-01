@@ -98,86 +98,53 @@
             <!--<i class="fa fa-chevron-right"></i>-->
             <img class="img-responsive" src="<c:url value="/resources/includes/img/ctg.png" />"/>
         </button>
-        <div class="login" id="login">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4" id="form-hold">
-                        <form>
-                            <div class="form-wrap animated fadeInDown">
-                                <button type="button" id="sic">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                                <div class="title-logo">
-                                    <h1 class="text-center"><a id="home-uri" href="#">TalentVouch<sup>Beta</sup></a></h1>
-                                </div>
-                                <div class="row">
-                                    <h4 class="text-center logh">Login via</h4>
-                                    <div class="login-via center-block">
-                                        <a class="btn btn-fa" href="#"><i class="fa fa-facebook"></i></a>
-                                        <a class="btn btn-li" href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a class="btn btn-gp" href="#"><i class="fa fa-google-plus"></i></a>
-                                    </div>
-                                </div>
-                                <h4 class="text-center">or</h4>
-                                <div class="form-group">
-                                    <label class="label" for="exampleInputEmail1" id="userlabel">Email address</label>
-                                    <input type="email" class="form-control" id="InputEmail" placeholder="Enter email">
-                                </div>
-                                <div class="form-group">
-                                    <label class="label" for="exampleInputPassword1" id="passlabel">Password</label>
-                                    <input type="password" class="form-control" id="InputPassword" placeholder="Password">
-                                </div>
-                                <button type="submit" class="btn btn-block btn-default" id="sign-in">Sign In</button>
-                            </div>
-                        </form>
-                        <p class="text-center" id="fp"><a href="#">Forgot password?</a></p>
-                        <p id="sup" class="text-center"><a class="btn btn-danger" href="#">Sign Up</a>&nbsp;&nbsp;now and Earn Rewards.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <c:choose>
+            <c:when test="${sessionScope.userName == null}">
+                <%@include file="/WEB-INF/pages/jsp/login.jsp"%>
+            </c:when>
+        </c:choose>
         <div class="wrap sb-open">
             <!-- Responsive Navbar -->
             <div class="navholder">
-				<nav class="navbar navbar-default navbar-fixed-top">
-					<div class="container">
-						<div class="navbar-header">
-							<a class="navbar-brand" href="#">TalentVouch<small class="hidden-xs hidden-sm">.com</small><sup>Beta</sup></a>
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-home">
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>	
-							</button>
-                                                        <button type="button" class="navbar-toggle" id="refine-toggle">
-								<i class="fa fa-filter"></i>
-							</button>
-                                                        <c:choose>
-                                                            <c:when test="${sessionScope.userName != null}">
-                                                                <button type="button" id="my-account">
-                                                                    <img src="<c:url value="/resources/includes/img/emp-icon.png"/>" width="30px" /></button>
-                                                            </c:when>
-                                                        </c:choose>
-						</div>
-						<div class="collapse navbar-collapse" id="navbar-home">
-							<ul class="nav navbar-nav navbar-right">
-								<li>
-									<a href="index.php">Home<span class="hover"></span></a>
-								</li>
-								<li>
-									<a href="#">How it Works<span class="hover"></span></a>
-								</li>
-								<li class="active">
-									<a href="jobs.php">Jobs<span class="hover"></span></a>
-								</li>
-								<%@include file="/WEB-INF/pages/jsp/logged.jsp" %>
-								<li>
-									<a href="#" id="employers-zone">Employers<span class="hover hidden-sm hidden-md hidden-lg"></span></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</nav><!-- Responsive Navbar end -->
-			</div>
+                <nav class="navbar navbar-default navbar-fixed-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">TalentVouch<small class="hidden-xs hidden-sm">.com</small><sup>Beta</sup></a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-home">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>	
+                            </button>
+                            <button type="button" class="navbar-toggle" id="refine-toggle">
+                                <i class="fa fa-filter"></i>
+                            </button>
+                            <c:choose>
+                                <c:when test="${sessionScope.userName != null}">
+                                    <button type="button" id="my-account">
+                                        <img src="<c:url value="/resources/includes/img/emp-icon.png"/>" width="30px" /></button>
+                                    </c:when>
+                                </c:choose>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-home">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="index.htm">Home<span class="hover"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#">How it Works<span class="hover"></span></a>
+                                </li>
+                                <li class="active">
+                                    <a href="jobs.htm">Jobs<span class="hover"></span></a>
+                                </li>
+                                <%@include file="/WEB-INF/pages/jsp/logged.jsp" %>
+                                <li>
+                                    <a href="#" id="employers-zone">Employers<span class="hover hidden-sm hidden-md hidden-lg"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav><!-- Responsive Navbar end -->
+            </div>
 
             <div id="plain-search-form">
                 <div class="dullness"></div>
@@ -518,10 +485,10 @@
     <script src="<c:url value="/resources/includes/js/login-script.js"/>"></script>
     <script src="<c:url value="/resources/includes/js/search-script.js"/>"></script>
     <script>
-        $("#vouch-range-slider").slider({step: 1, min: 0, max: 10000, value: [0, 10000], focus: true, tooltip: 'hide'});
-        $("#vouch-range-slider").on("slide", function (slideEvt) {
-            $("#vr-val1").text(slideEvt.value[0]);
-            $("#vr-val2").text(slideEvt.value[1]);
-        });
+                                                                        $("#vouch-range-slider").slider({step: 1, min: 0, max: 10000, value: [0, 10000], focus: true, tooltip: 'hide'});
+                                                                        $("#vouch-range-slider").on("slide", function (slideEvt) {
+                                                                            $("#vr-val1").text(slideEvt.value[0]);
+                                                                            $("#vr-val2").text(slideEvt.value[1]);
+                                                                        });
     </script>
 </html>

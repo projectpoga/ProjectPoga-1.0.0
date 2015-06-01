@@ -62,7 +62,11 @@
 			<!--<i class="fa fa-chevron-right"></i>-->
                         <img class="img-responsive" src="<c:url value="/resources/includes/img/ctg.png"/>"/>
 		</button>
-                <%@include file="/WEB-INF/pages/jsp/login.jsp"%>
+                <c:choose>
+                    <c:when test="${sessionScope.userName == null}">
+                        <%@include file="/WEB-INF/pages/jsp/login.jsp"%>
+                    </c:when>
+                </c:choose>
 		<div class="wrap sb-open">
 			<!-- Responsive Navbar -->
 			<div class="navholder">
