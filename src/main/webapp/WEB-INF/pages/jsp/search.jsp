@@ -89,7 +89,7 @@
                     <ul class="nav nav-pills nav-stacked" id="category-list">
                         <c:forEach var="categoryList" items="${categoryModelList}">
                             <li><a href="#">${categoryList.categoryName} <span class="badge">${categoryList.jobsCount}</span></a><input type="hidden" name="<c:out value="${fn:trim(categoryList.categoryName)}" />" id="${categoryList.categoryId}" value="${categoryList.categoryId}"/></li>
-                                </c:forEach>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -158,11 +158,11 @@
                                     <div class="row">
                                         <div class="form-group col-sm-6 col-md-6">
                                             <label class="sr-only" for="skills-desg">Skills</label>
-                                            <input type="text" name="jobTitle" class="form-control" id="skills-desg" placeholder="Skills, Designation, Companies">
+                                            <input type="text" name="jobTitle" class="form-control" id="skills-desg" placeholder="Skills, Designation, Companies" value="<c:out value="${fieldValues.jobTitle}"/>">
                                         </div>
                                         <div class="form-group col-sm-6 col-md-6">
                                             <label class="sr-only" for="location">Preferred Location</label>
-                                            <input type="text" name="location" class="form-control" id="location" placeholder="Location">
+                                            <input type="text" name="location" class="form-control" id="location" placeholder="Location" value="<c:out value="${fieldValues.location}"/>">
                                         </div>
                                     </div>
                                 </div>
@@ -192,7 +192,7 @@
                                         </div>
                                         <div class="form-group col-sm-5 col-md-5">
                                             <label class="sr-only" for="location">Salary</label>
-                                            <input type="text" name="salary" class="form-control" id="location" placeholder="Salary">
+                                            <input type="text" name="salary" class="form-control" id="location" placeholder="Salary" value="<c:out value="${fieldValues.salary}"/>">
                                         </div>
                                         <div class="form-group col-sm-2 col-md-2">
                                             <button type="submit" class="btn btn-default" id="plain-search-btn"><i class="fa fa-search"></i></button>
@@ -364,12 +364,14 @@
 
                         <!-- Deleted convert time scriplet -->
                         <div class="col-sm-8 col-md-7 col-lg-7 col-skew" id="query-jobs-list">
-                            <div class="panel panel-default vl" id="vl1">
+                          <!-- <div class="panel panel-default vl" id="vl1">
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-9 list-detail">
-                                            <span>1-14</span> of 14 <span>Web Designer Jobs</span><span class="hidden-xs"> in Visakhapatnam</span>
+                                           
+                                              <span>1-14</span> of 14 <span>Web Designer Jobs</span><span class="hidden-xs"> in Visakhapatnam</span>
                                         </div>
+                                                        
                                         <div class="col-sm-3 hidden-xs pull-right">
                                             <div class="pull-right">
                                                 <span>
@@ -389,7 +391,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div id="searchResultsDiv">
 
                                 <%@include file="/WEB-INF/pages/jsp/searchResults.jsp"%>

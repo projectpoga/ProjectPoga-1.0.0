@@ -1,9 +1,10 @@
 <%-- 
     Document   : searchResults
     Created on : May 29, 2015, 12:51:53 AM
-    Author     : Miracle
+    Author     : Manoj
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%@include file="/WEB-INF/pages/jspf/envsetup.jspf"%>
 <%@page import="org.ocpsoft.prettytime.PrettyTime, java.util.Date,java.text.SimpleDateFormat,java.text.ParseException"%> 
 <%!
     //This method converts the time stamp to days ago ex:30 min ago, 1 day ago
@@ -14,10 +15,54 @@
         return p.format(past);
     }
 %>
-<c:choose>
-    <c:when test="${empty refinedJobs}">
-        No search results found
-    </c:when>
+ <div class="panel panel-default vl" id="vl1">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-9 list-detail">
+                                           <c:choose>
+                                                <c:when test="${empty refinedJobs}">
+                                                    <span>No  Jobs </span>
+                                                </c:when>
+                                                
+                                                <c:otherwise>
+                                                    <c:choose>
+                                                        <c:when test="${fn:length(refinedJobs) gt 1}">
+                                                            <span><c:out value="${fn:length(refinedJobs)}" /> Jobs </span>
+                                                         </c:when>
+                                                         <c:otherwise>
+                                                             <span><c:out value="${fn:length(refinedJobs)}" /> Job </span>
+                                                         </c:otherwise>
+                                                    </c:choose>
+                                                </c:otherwise>
+                                           </c:choose>
+                                            <span>found with your </span><span class="hidden-xs">Search criteria</span>
+                                        </div>
+                                                        
+                                        <div class="col-sm-3 hidden-xs pull-right">
+                                            <div class="pull-right">
+                                                <span>
+                                                    <button class="btn btn-det active">
+                                                        <span class="icon-bar"></span>
+                                                        <span class="icon-bar"></span>
+                                                    </button>
+                                                </span>
+                                                <span>
+                                                    <button class="btn btn-few">
+                                                        <span class="icon-bar"></span>
+                                                        <span class="icon-bar"></span>
+                                                        <span class="icon-bar"></span>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+    <c:choose>
+        <c:when test="${empty refinedJobs}">
+<!--        No search results found-->
+        </c:when>
     <c:otherwise>
         <c:forEach var="jobDtlsObj" items="${refinedJobs}">
             <div class="panel panel-default job-post-container">

@@ -7,6 +7,8 @@ package com.talentvouch.controllers;
 
 
 import com.talentvouch.dao.access.DataAccessMgrDAOImpl;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +16,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 /**
  *
@@ -98,6 +103,29 @@ public class ViewForwardController{
         
        return new ModelAndView("register");
         
+    }
+    
+    @RequestMapping(value = "/autoComplete", method = RequestMethod.GET)
+    public @ResponseBody List<String> autoComplete(@RequestParam("term") String name){
+    
+    List<String> matchName = getName(name);
+        System.out.println("List"+matchName);
+    return matchName;
+    }
+    
+    public static List getName(String name) {
+
+    List<String> returnMatchName = new ArrayList<String>();
+    String data[]={"Abourezk James","Abrams Creighton","Ace Jane","Ba Jin","Baba Meher","Baba Tupeni"};
+            
+        
+    for (String string : data) {
+        if (string.toUpperCase().indexOf(name.toUpperCase())!= -1) {
+        returnMatchName.add(string);
+        }
+    }
+    
+    return returnMatchName;
     }
   
 

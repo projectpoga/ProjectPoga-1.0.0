@@ -15,7 +15,7 @@ public class SearchJobFacetDtls {
     private String jobTitles;
     private String categoryIDs;
     private String jobPostedDate;
-    private double salary;
+    private String salary;
     private double vouchMoneyRange;
 
     public String getLocationIds() {
@@ -50,11 +50,11 @@ public class SearchJobFacetDtls {
         this.jobPostedDate = jobPostedDate;
     }
 
-    public double getSalary() {
+    public String getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(String salary) {
         this.salary = salary;
     }
 

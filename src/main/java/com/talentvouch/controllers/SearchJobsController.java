@@ -47,6 +47,8 @@ public class SearchJobsController {
       searchModel.addObject("jobsCountByLocList", getDataAccessMgrDAOImpl().getJobCountByLocation());
       searchModel.addObject("jobsCountByJobTitleList", getDataAccessMgrDAOImpl().getJobCountByJobTitle());
       
+      //add field values back to the search model to display them in textfields in search.jsp
+      searchModel.addObject("fieldValues", searchJobInputDtls);
        return searchModel;
         
     }

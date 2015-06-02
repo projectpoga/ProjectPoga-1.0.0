@@ -105,11 +105,11 @@
 					<div class="container" id="welcome-body">
 						<h1 class="text-center intro-title">Welcome to <b>TalentVouch</b><small>.com</small></h1>
 						<p class="text-center">Refer your peers, we vouch you with rewards!</p>
-						<form method="" action="" id="job-search-form">
+						<form method="" action="search.htm" id="job-search-form">
 							<div class="input-group" id="job-search-body">
-								<input type="text" class="form-control" placeholder="Search Job..." autofocus>
+                                                            <input type="text" name="jobTitle" class="form-control" placeholder="Search Job..." autofocus>
 								<span class="input-group-btn">
-									<button class="btn btn-default" type="button" id="search-btn"><i class="fa fa-search"></i></button>
+									<button class="btn btn-default" type="submit" id="search-btn"><i class="fa fa-search"></i></button>
 								</span>
 							</div>
 						</form>
@@ -344,4 +344,5 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
         <script src="<c:url value="/resources/includes/js/login-script.js"/>"></script>
 	<script src="<c:url value="/resources/includes/js/home-script.js"/>"></script>
+
 </html>
