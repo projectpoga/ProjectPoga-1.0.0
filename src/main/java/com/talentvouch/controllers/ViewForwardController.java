@@ -42,32 +42,16 @@ public class ViewForwardController{
         
     }
     
-    @RequestMapping("/loginIndex")
-    public ModelAndView loginIndex(HttpServletRequest request) throws Exception {
-        
-        //create session if not exist
-       HttpSession session=request.getSession();
-       session.setAttribute("userName", "Venkat");
-       ModelAndView  indexModel = new ModelAndView("index");
-        String sessionID = session.getId();
-        indexModel.addObject("sessionID", sessionID);
-        System.out.println("session============================"+sessionID+"is new seeion?:"+session.isNew());
-        
-        return indexModel; 
-        
-    }
-    
     @RequestMapping("/logout")
-    public ModelAndView logout(HttpServletRequest request) throws Exception {
+    public ModelAndView logout(HttpServletRequest request, @RequestParam("pageName") String currentPage) throws Exception {
         
         HttpSession session = request.getSession(false);
         if(session!=null)
             session.invalidate();
-       ModelAndView  indexModel = new ModelAndView("index");
         
-        System.out.println("Successfully logged out");
+        System.out.println("Successfully logged out"+request.getRequestURL());
         
-        return indexModel; 
+        return new ModelAndView("redirect:" + currentPage);
         
     }
     

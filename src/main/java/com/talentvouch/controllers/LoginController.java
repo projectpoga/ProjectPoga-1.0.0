@@ -8,6 +8,8 @@ package com.talentvouch.controllers;
 import com.talentvouch.dao.access.DataAccessMgrDAOImpl;
 import com.talentvouch.jbcrypt.BCrypt;
 import com.talentvouch.model.login.LoginDtls;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,7 @@ public class LoginController {
     
     @RequestMapping(value="/login", method=RequestMethod.POST)
     @ResponseBody
-    public String login(@RequestParam("email") String email,@RequestParam("password") String password){
+    public String login(@RequestParam("email") String email,@RequestParam("password") String password,HttpServletRequest request){
         
         logger.debug("Authenticating the user :"+email);
         System.err.println("Login***********"+email);
@@ -44,7 +46,11 @@ public class LoginController {
        
         if(isAuthenticatedUser(loginDtls)){
             logger.debug("User authentication is success, redirecting to the index page");
-             return "success";
+            //create session if not exist
+            HttpSession session=request.getSession();
+            session.setAttribute("userName", "Venkat");
+            
+            return "success";
                  
         }
         

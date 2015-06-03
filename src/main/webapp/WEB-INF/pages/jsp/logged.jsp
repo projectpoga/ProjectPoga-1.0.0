@@ -5,7 +5,13 @@
             <ul class="dropdown-menu" role="menu">
                 <li><a href="#">My Profile</a></li>
                 <li class="divider"></li>
-                <li><a href="logout.htm"><i class="fa fa-power-off"></i>&nbsp;Log Out</a></li>
+                    <%  String uri = request.getRequestURI();
+
+                        String pageName = uri.substring(uri.lastIndexOf("/")+1);
+                        pageName = pageName.substring(0, pageName.lastIndexOf(".")+1)+"htm";
+                    %>
+                    
+                <li><a href="logout.htm?pageName=<%=pageName%>"><i class="fa fa-power-off"></i>&nbsp;Log Out</a></li>
             </ul>
         </li>
     </c:when>

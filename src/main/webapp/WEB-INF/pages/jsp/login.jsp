@@ -57,7 +57,7 @@
             success: function (response) {
 
                 if (response != null && response === "success")
-                    window.location.replace("loginIndex.htm");
+                    window.location.replace(location.pathname.substring(location.pathname.lastIndexOf("/")+1));
                 else
                     $("#loginError").html("Authentication failed Please try again");
 
