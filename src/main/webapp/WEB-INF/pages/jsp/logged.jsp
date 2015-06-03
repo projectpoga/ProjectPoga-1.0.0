@@ -1,5 +1,5 @@
 <c:choose>
-    <c:when test="${sessionScope.userName != null}">
+    <c:when test="${sessionScope.userDtls != null}">
         <li class="dropdown hidden-xs">
             <a href="#" class="dropdown-toggle my-account" data-toggle="dropdown" role="button" aria-expanded="false"><img src="<c:url value="/resources/includes/img/emp-icon.png"/>" width="30px" /></a>
             <ul class="dropdown-menu" role="menu">

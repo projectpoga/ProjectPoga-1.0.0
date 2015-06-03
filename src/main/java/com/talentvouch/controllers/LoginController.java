@@ -8,6 +8,7 @@ package com.talentvouch.controllers;
 import com.talentvouch.dao.access.DataAccessMgrDAOImpl;
 import com.talentvouch.jbcrypt.BCrypt;
 import com.talentvouch.model.login.LoginDtls;
+import com.talentvouch.model.login.UserDtls;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -47,8 +48,13 @@ public class LoginController {
         if(isAuthenticatedUser(loginDtls)){
             logger.debug("User authentication is success, redirecting to the index page");
             //create session if not exist
-            HttpSession session=request.getSession();
-            session.setAttribute("userName", "Venkat");
+            HttpSession session = request.getSession();
+            
+//            get user detail
+            UserDtls usrDtls = getDataAccessMgrDAOImpl().getUserDtls(email);
+            System.out.println("UserDtls:"+usrDtls.getDisplayName());
+            session.setAttribute("userDtls", usrDtls);
+            
             
             return "success";
                  

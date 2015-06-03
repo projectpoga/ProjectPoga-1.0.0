@@ -6,6 +6,7 @@
 package com.talentvouch.mapper;
 
 import com.talentvouch.model.login.LoginDtls;
+import com.talentvouch.model.login.UserDtls;
 import com.talentvouch.model.search.JobsCount;
 import com.talentvouch.model.search.SearchJobFacetDtls;
 import com.talentvouch.model.search.SearchJobInputDtls;
@@ -46,6 +47,8 @@ public interface DataMapper {
     public List<JobsCount> getJobCountByJobTitle();
     
     public List<RefinedJobDtlsVO> getRelevantJobsByfacets(SearchJobFacetDtls SearchJobFacetDtls);
+    
+    public UserDtls getUserDtls(String userName);
     
     
 }

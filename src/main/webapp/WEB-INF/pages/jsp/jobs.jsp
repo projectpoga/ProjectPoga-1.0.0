@@ -63,7 +63,7 @@
                         <img class="img-responsive" src="<c:url value="/resources/includes/img/ctg.png"/>"/>
 		</button>
                 <c:choose>
-                    <c:when test="${sessionScope.userName == null}">
+                    <c:when test="${sessionScope.userDtls == null}">
                         <%@include file="/WEB-INF/pages/jsp/login.jsp"%>
                     </c:when>
                 </c:choose>

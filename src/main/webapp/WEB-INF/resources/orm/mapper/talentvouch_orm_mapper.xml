@@ -185,4 +185,31 @@
 
   </select>
   
+  <select id="getUserDtls" parameterType="String" resultMap="userDtlsResultMap">
+    SELECT  users.USER_ID, users.USERNAME, users.DISPLAYNAME, users.USERROLE_ID, users.STATUS,
+            userDtls.USERDETAILS_ID, userDtls.ADDRESS, userDtls.PHONENUMBER, userDtls.EMAIL_ID, userDtls.REWARDAMOUNT,
+            userDtls.EXPERIENCE, userDtls.JOB_TITLE, userDtls.JOB_LOCATION, userDtls.SKILLS
+    FROM TV_DATA.USERS users, TV_DATA.USERDETAILS userDtls
+    WHERE users.USER_ID = userDtls.USER_ID AND
+          users.USERNAME = #{userName}
+  </select>
+   <resultMap id="userDtlsResultMap" type="com.talentvouch.model.login.UserDtls">
+       
+      <result property="userID" column="USER_ID"/>
+      <result property="userName" column="USERNAME"/> 
+      <result property="displayName" column="DISPLAYNAME"/>
+      <result property="userRoleId" column="USERROLE_ID"/>
+      <result property="status" column="STATUS"/> 
+      <result property="userDtlsId" column="USERDETAILS_ID"/>
+      <result property="address" column="ADDRESS"/>
+      <result property="phoneNo" column="PHONENUMBER"/> 
+      <result property="email" column="EMAIL_ID"/>  
+      <result property="rewardAmount" column="REWARDAMOUNT"/>
+      <result property="experience" column="EXPERIENCE"/> 
+      <result property="jobTitle" column="JOB_TITLE"/> 
+      <result property="jobLocation" column="JOB_LOCATION"/>
+      <result property="skills" column="SKILLS"/> 
+      
+  </resultMap>
+  
 </mapper>
