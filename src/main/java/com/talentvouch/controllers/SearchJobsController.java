@@ -66,18 +66,22 @@ public class SearchJobsController {
         String locatoinIds = "";
         String roles = "";
         String categoryIds = "";
+        String dayValue = "";
         
         locatoinIds = queries[index];
         if(index+1 < queriesLen)
             roles =  queries[++index];
         if(index+1 < queriesLen)
             categoryIds = queries[++index];
+        if(index+1 < queriesLen)
+            dayValue = queries[++index];
          
 //         set the queries into the object 
          SearchJobFacetDtls facetDtls = new SearchJobFacetDtls();
          facetDtls.setLocationIds(locatoinIds);
          facetDtls.setJobTitles(roles);
          facetDtls.setCategoryIDs(categoryIds);
+         facetDtls.setJobPostedDuration(dayValue);
          
     //  ModelAndView searchModel = new ModelAndView("searchResults");
     

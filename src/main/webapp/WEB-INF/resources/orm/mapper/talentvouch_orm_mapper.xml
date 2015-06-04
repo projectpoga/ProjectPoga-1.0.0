@@ -177,6 +177,9 @@
             <if test="categoryIDs != null and categoryIDs != ''">
                  jobs.CATEGORY_ID IN (${categoryIDs}) AND
             </if>
+            <if test="jobPostedDuration != null and jobPostedDuration != ''">
+                 DATE(jobs.CREATED_DATE) >= DATE_SUB(CURDATE(), INTERVAL ${jobPostedDuration} DAY) AND
+            </if>
       
             jobs.EMPLOYER_ID = employer.EMPLOYER_ID AND
             employer.EMPLOYER_ID = empDtls.EMPLOYER_ID AND

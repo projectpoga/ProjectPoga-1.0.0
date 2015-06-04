@@ -14,10 +14,19 @@ public class SearchJobFacetDtls {
     private String locationIds;
     private String jobTitles;
     private String categoryIDs;
-    private String jobPostedDate;
+    private String jobPostedDuration;
     private String salary;
     private double vouchMoneyRange;
 
+    public String getJobPostedDuration() {
+        return jobPostedDuration;
+    }
+
+    public void setJobPostedDuration(String jobPostedDuration) {
+        this.jobPostedDuration = jobPostedDuration;
+    }
+
+    
     public String getLocationIds() {
         return locationIds;
     }
@@ -40,14 +49,6 @@ public class SearchJobFacetDtls {
 
     public void setCategoryIDs(String categoryIDs) {
         this.categoryIDs = categoryIDs;
-    }
-
-    public String getJobPostedDate() {
-        return jobPostedDate;
-    }
-
-    public void setJobPostedDate(String jobPostedDate) {
-        this.jobPostedDate = jobPostedDate;
     }
 
     public String getSalary() {

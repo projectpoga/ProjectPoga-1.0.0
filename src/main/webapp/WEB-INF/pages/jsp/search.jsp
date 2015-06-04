@@ -49,6 +49,9 @@
         <script lang="javascript" type="text/javascript">
             function ajaxRoleFacet()
             {
+               var selector = document.getElementById('freshness-list');
+               var dayValue = selector[selector.selectedIndex].value;
+               
                 var labels = ["locationFacet", "roleFacet", "industryFacet"];
                 var query = "";
                 //loop for each facet
@@ -64,6 +67,8 @@
                     rolesLabel = rolesLabel.substr(0, (rolesLabel.length - 1));
                     query = query + rolesLabel + ";";
                 }
+                
+                query = query + dayValue;
                 var data = "query=" + encodeURIComponent(query);
                 $.ajax({
                     type: "POST",
@@ -216,12 +221,12 @@
                                     <div class="panel-body" id="refine-body">
                                         <div id="fresh-result">
                                             <h5 class="sub-heading">Jobs Freshness</h5>
-                                            <select class="selectpicker show-tick" data-style="btn-fresh" id="freshness-list">
-                                                <option>Last 30 Days</option>
-                                                <option>Last 15 Days</option>
-                                                <option>Last 7 Days</option>
-                                                <option>Last 3 Days</option>
-                                                <option>Last 1 Day</option>
+                                            <select class="selectpicker show-tick" data-style="btn-fresh" id="freshness-list" onchange="ajaxRoleFacet()">
+                                                <option value="30">Last 30 Days</option>
+                                                <option value="15">Last 15 Days</option>
+                                                <option value="7">Last 7 Days</option>
+                                                <option value="3">Last 3 Days</option>
+                                                <option value="1">Last 1 Day</option>
                                             </select>
                                         </div>
                                         <div class="divider"></div>
