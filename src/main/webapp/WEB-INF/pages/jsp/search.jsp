@@ -119,7 +119,7 @@
                                 <i class="fa fa-filter"></i>
                             </button>
                             <c:choose>
-                                <c:when test="${sessionScope.userName != null}">
+                                <c:when test="${sessionScope.userDtls != null}">
                                     <button type="button" id="my-account">
                                         <img src="<c:url value="/resources/includes/img/emp-icon.png"/>" width="30px" /></button>
                                     </c:when>
