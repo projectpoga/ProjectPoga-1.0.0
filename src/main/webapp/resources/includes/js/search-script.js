@@ -8,13 +8,15 @@ $(function(){
 		$('.selectpicker').selectpicker();
 
 		var view = false;
-		$('.vl .btn-few').on('click', function() {
+		$('body').on('click','.vl .btn-few', function(event) {
 			view = false;
-			listView(view, $(this))
+			listView(view, $('.vl .btn-few'))
+                        event.preventDefault();
 		})
-		$('.vl .btn-det').on('click', function() {
+		$('body').on('click','.vl .btn-det', function(event) {
 			view = true;
-			listView(view, $(this))
+			listView(view, $('.vl .btn-det'))
+                        event.preventDefault();
 		})
 
 		function listView(chk, $btn) {
